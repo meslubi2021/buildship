@@ -8,7 +8,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 object Project : Project({
     description = "Eclipse plugins for Gradle    http://eclipse.org/buildship"
 
-    vcsRoot(Git)
+    vcsRoot(GitHubEclipseBuildship)
 
     template(Eclipse_Build)
 
@@ -45,6 +45,6 @@ object Project : Project({
         preventDependencyCleanup = false
     }
 
-    subProject(Promotion.Project)
+    subProject(Check.Promotion.Project)
     subProject(Check.Project)
 })

@@ -8,7 +8,7 @@ object Checkpoints_Stage3Final : BuildType({
     description = "Passes all QA stages"
 
     vcs {
-        root(_Self.vcsRoots.Git)
+        root(_Self.vcsRoots.GitHubEclipseBuildship)
 
         checkoutMode = CheckoutMode.ON_AGENT
     }

@@ -9,7 +9,7 @@ object Checkpoints_Stage1Distribution : BuildType({
     description = "Builds production distributions"
 
     vcs {
-        root(_Self.vcsRoots.Git)
+        root(_Self.vcsRoots.GitHubEclipseBuildship)
 
         checkoutMode = CheckoutMode.ON_AGENT
     }

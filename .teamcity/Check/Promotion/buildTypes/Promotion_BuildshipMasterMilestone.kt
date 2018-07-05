@@ -1,23 +1,23 @@
-package Promotion.buildTypes
+package Check.Promotion.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
-object Promotion_BuildshipMasterRelease : BuildType({
-    name = "Buildship - Promote Release"
+object Promotion_BuildshipMasterMilestone : BuildType({
+    name = "Buildship - Promote Milestone"
 
     artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"
 
     params {
-        text("Confirm", "NO", label = "Do you want to proceed with the release?", description = "Read the release instructions document before proceeding. Confirm to publish a new release.", display = ParameterDisplay.PROMPT,
+        text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,
               regex = "YES", validationMessage = "Confirm by writing YES in order to proceed.")
-        param("eclipse.release.type", "release")
+        param("eclipse.release.type", "milestone")
         param("build.invoker", "ci")
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
     }
 
     vcs {
-        root(_Self.vcsRoots.Git)
+        root(_Self.vcsRoots.GitHubEclipseBuildship)
 
         checkoutMode = CheckoutMode.ON_AGENT
         cleanCheckout = true
@@ -101,16 +101,6 @@ object Promotion_BuildshipMasterRelease : BuildType({
                 --stacktrace -Declipse.p2.mirror=false
             """.trimIndent()
         }
-        gradle {
-            name = "Tag revision and increment version number"
-            tasks = "tag incrementVersion"
-            buildFile = ""
-            gradleParams = """
-                --exclude-task eclipseTest
-                -Peclipse.version=45 -Pcompiler.location='%linux.java7.oracle.64bit%/bin/javac' -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=build.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=/home/data/httpd/download.eclipse.org/buildship/updates -PECLIPSE_ORG_TEMP_PATH=/home/data/httpd/download.eclipse.org/buildship/temp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates
-                --stacktrace
-            """.trimIndent()
-        }
     }
 
     failureConditions {
@@ -123,7 +113,7 @@ object Promotion_BuildshipMasterRelease : BuildType({
     }
 
     requirements {
-        matches("teamcity.agent.name", "dev3.*")
         contains("teamcity.agent.jvm.os.name", "Linux")
+        matches("teamcity.agent.name", "dev3.*")
     }
 })

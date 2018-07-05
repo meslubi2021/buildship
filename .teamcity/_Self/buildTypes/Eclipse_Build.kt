@@ -21,7 +21,7 @@ object Eclipse_Build : Template({
     }
 
     vcs {
-        root(_Self.vcsRoots.Git)
+        root(_Self.vcsRoots.GitHubEclipseBuildship)
 
         checkoutMode = CheckoutMode.ON_AGENT
     }

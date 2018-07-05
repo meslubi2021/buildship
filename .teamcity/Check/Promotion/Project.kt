@@ -1,8 +1,9 @@
-package Promotion
+package Check.Promotion
 
-import Promotion.buildTypes.*
-import Promotion.vcsRoots.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import Check.Promotion.buildTypes.Promotion_BuildshipMasterMilestone
+import Check.Promotion.buildTypes.Promotion_BuildshipMasterRelease
+import Check.Promotion.buildTypes.Promotion_Snapshot_Eclipse45
+import _Self.vcsRoots.GitHubEclipseBuildship
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
@@ -10,7 +11,7 @@ object Project : Project({
     name = "Promotion"
     description = "Promotion configurations"
 
-    vcsRoot(Promotion_ToolingEclipse)
+    //vcsRoot(GitHubEclipseBuildship)
 
     buildType(Promotion_Snapshot_Eclipse45)
     buildType(Promotion_BuildshipMasterRelease)

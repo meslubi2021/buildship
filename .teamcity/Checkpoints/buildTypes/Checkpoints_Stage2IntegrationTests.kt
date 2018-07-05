@@ -8,7 +8,7 @@ object Checkpoints_Stage2IntegrationTests : BuildType({
     description = "Passes integration tests"
 
     vcs {
-        root(_Self.vcsRoots.Git)
+        root(_Self.vcsRoots.GitHubEclipseBuildship)
 
         checkoutMode = CheckoutMode.ON_AGENT
     }
