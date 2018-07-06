@@ -110,7 +110,7 @@ object Promotion_BuildshipMasterMilestone : BuildType({
     }
 
     dependencies {
-        snapshot(Check.Checkpoints.buildTypes.Checkpoints_Stage3Final) {
+        snapshot(Check.Checkpoints.buildTypes.Stage3Final) {
         }
     }
 

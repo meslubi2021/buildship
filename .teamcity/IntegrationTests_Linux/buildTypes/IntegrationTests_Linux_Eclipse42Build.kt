@@ -4,7 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
 object IntegrationTests_Linux_Eclipse42Build : BuildType({
-    templates(_Self.buildTypes.Eclipse_Build)
+    templates(_Self.buildTypes.EclipseBuildTemplate)
     name = "Complete Build (Linux, Eclipse 4.2, Java 7)"
     description = "Basic integration testing of the plugin for Eclipse 4.2"
 
@@ -15,7 +15,7 @@ object IntegrationTests_Linux_Eclipse42Build : BuildType({
     }
 
     dependencies {
-        snapshot(Check.Checkpoints.buildTypes.Checkpoints_Stage1Distribution) {
+        snapshot(Check.Checkpoints.buildTypes.Stage1Distribution) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

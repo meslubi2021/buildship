@@ -1,19 +1,16 @@
 package Check.Checkpoints.buildTypes
 
+import _Self.buildTypes.CheckpointTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
-object Checkpoints_Stage1Distribution : BuildType({
+object Stage1Distribution : BuildType({
     name = "Stage 1 - Distribution"
     description = "Builds production distributions"
 
-    vcs {
-        root(_Self.vcsRoots.GitHubEclipseBuildship)
-
-        checkoutMode = CheckoutMode.ON_AGENT
-    }
+    templates(CheckpointTemplate)
 
     triggers {
         vcs {

@@ -1,30 +1,26 @@
 package Check.Checkpoints.buildTypes
 
+import _Self.buildTypes.CheckpointTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
-object Checkpoints_Stage2IntegrationTests : BuildType({
+object Stage2IntegrationTests : BuildType({
     name = "Stage 2 - Integration Tests"
     description = "Passes integration tests"
 
-    vcs {
-        root(_Self.vcsRoots.GitHubEclipseBuildship)
-
-        checkoutMode = CheckoutMode.ON_AGENT
-    }
+    templates(CheckpointTemplate)
 
     triggers {
         finishBuildTrigger {
-            buildTypeExtId = "${Checkpoints_Stage1Distribution.id}"
+            buildTypeExtId = "${Stage1Distribution.id}"
             successfulOnly = true
             branchFilter = "+:*"
         }
     }
 
     dependencies {
-        snapshot(Checkpoints_Stage1Distribution) {
+        snapshot(Stage1Distribution) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

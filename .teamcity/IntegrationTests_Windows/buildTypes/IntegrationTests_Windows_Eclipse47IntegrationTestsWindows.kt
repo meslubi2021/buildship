@@ -3,7 +3,7 @@ package IntegrationTests_Windows.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object IntegrationTests_Windows_Eclipse47IntegrationTestsWindows : BuildType({
-    templates(_Self.buildTypes.Eclipse_Build)
+    templates(_Self.buildTypes.EclipseBuildTemplate)
     name = "Complete Build (Windows, Eclipse 4.7, Java 8)"
     description = "Basic integration testing of the plugin for Eclipse 4.7"
 

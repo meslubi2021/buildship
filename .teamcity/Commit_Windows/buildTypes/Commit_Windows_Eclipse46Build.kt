@@ -3,7 +3,7 @@ package Commit_Windows.buildTypes
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Commit_Windows_Eclipse46Build : BuildType({
-    templates(_Self.buildTypes.Eclipse_Build)
+    templates(_Self.buildTypes.EclipseBuildTemplate)
     name = "Test Coverage (Windows, Eclipse 4.6, Java 8)"
     description = "Building the Eclipse plugin against Eclipse 4.6 without running the tests"
 

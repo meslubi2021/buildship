@@ -4,7 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
-object Eclipse_Build : Template({
+object EclipseBuildTemplate : Template({
     name = "Tooling-Eclipse-Build"
 
     artifactRules = """

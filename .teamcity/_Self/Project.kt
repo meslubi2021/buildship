@@ -1,6 +1,6 @@
 package _Self
 
-import _Self.buildTypes.Eclipse_Build
+import _Self.buildTypes.EclipseBuildTemplate
 import _Self.vcsRoots.GitHubEclipseBuildship
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
@@ -10,7 +10,7 @@ object Project : Project({
 
     vcsRoot(GitHubEclipseBuildship)
 
-    template(Eclipse_Build)
+    template(EclipseBuildTemplate)
 
     params {
         password("eclipse.downloadServer.password", "credentialsJSON:3b651471-b495-4e6e-9708-f2d7860c90f7", label = "Password", display = ParameterDisplay.HIDDEN)
