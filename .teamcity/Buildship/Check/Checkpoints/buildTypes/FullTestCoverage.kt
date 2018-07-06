@@ -29,31 +29,31 @@ object FullTestCoverage : BuildType({
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_CompleteBuildLinuxEclipse48Java8) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse48) {
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse42Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse42) {
             onDependencyFailure = FailureAction.FAIL_TO_START
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse43Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse43) {
             onDependencyFailure = FailureAction.FAIL_TO_START
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse44Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse44) {
             onDependencyFailure = FailureAction.FAIL_TO_START
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse45Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse45) {
             onDependencyFailure = FailureAction.FAIL_TO_START
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse46Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse46) {
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse47IntegrationTests) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse47) {
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes.IntegrationTests_Linux_Eclipse47Java9) {
+        snapshot(Buildship.Check.FullTestCoverage.Linux.buildTypes.Eclipse47Java9) {
             onDependencyFailure = FailureAction.IGNORE
             onDependencyCancel = FailureAction.IGNORE
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Windows.buildTypes.IntegrationTests_Windows_Eclipse44Build) {
+        snapshot(Buildship.Check.FullTestCoverage.Windows.buildTypes.Eclipse44) {
         }
-        snapshot(Buildship.Check.BasicIntegrationTests.IntegrationTests_Windows.buildTypes.IntegrationTests_Windows_Eclipse47IntegrationTestsWindows) {
+        snapshot(Buildship.Check.FullTestCoverage.Windows.buildTypes.Eclipse47) {
             onDependencyFailure = FailureAction.FAIL_TO_START
         }
     }

@@ -1,12 +1,13 @@
-package Buildship.Check.BasicIntegrationTests.IntegrationTests_Windows.buildTypes
+package Buildship.Check.FullTestCoverage.Windows.buildTypes
 
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
-object IntegrationTests_Windows_Eclipse47IntegrationTestsWindows : BuildType({
+object Eclipse47 : BuildType({
+    id("Full_Test_Coverage_Windows_Eclipse427_Java8")
+    name = "Full Test Coverage (Windows, Eclipse 4.7, Java 8)"
+
     templates(EclipseBuildTemplate)
-    name = "Complete Build (Windows, Eclipse 4.7, Java 8)"
-    description = "Basic integration testing of the plugin for Eclipse 4.7"
 
     params {
         param("eclipse.version", "47")

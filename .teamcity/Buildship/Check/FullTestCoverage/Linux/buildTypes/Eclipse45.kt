@@ -1,16 +1,17 @@
-package Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes
+package Buildship.Check.FullTestCoverage.Linux.buildTypes
 
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
-object IntegrationTests_Linux_Eclipse44Build : BuildType({
+object Eclipse45 : BuildType({
+    id("Full_Test_Coverage_Linux_Eclipse45_Java7")
+    name = "Full Test Coverage (Linux, Eclipse 4.5, Java 7)"
+
     templates(EclipseBuildTemplate)
-    name = "Complete Build (Linux, Eclipse 4.4, Java 7)"
-    description = "Basic integration testing of the plugin for Eclipse 4.4"
 
     params {
-        param("eclipse.version", "44")
+        param("eclipse.version", "45")
         param("compiler.location", "%linux.java7.oracle.64bit%/bin/javac")
         param("eclipse.test.java.home", "%linux.java7.oracle.64bit%")
     }
@@ -23,6 +24,7 @@ object IntegrationTests_Linux_Eclipse44Build : BuildType({
     }
 
     requirements {
-        contains("teamcity.agent.jvm.os.name", "Linux", "RQ_319")
+        contains("teamcity.agent.jvm.os.name", "Linux", "RQ_301")
+        doesNotEqual("system.agent.name", "ubuntu6-agent1", "RQ_302")
     }
 })

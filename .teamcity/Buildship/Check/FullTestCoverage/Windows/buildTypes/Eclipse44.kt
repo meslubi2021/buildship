@@ -1,13 +1,14 @@
-package Buildship.Check.BasicIntegrationTests.IntegrationTests_Windows.buildTypes
+package Buildship.Check.FullTestCoverage.Windows.buildTypes
 
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.retryBuild
 
-object IntegrationTests_Windows_Eclipse44Build : BuildType({
+object Eclipse44 : BuildType({
+    id("Full_Test_Coverage_Windows_Eclipse42_Java7")
+    name = "Full Test Coverage (Windows, Eclipse 4.2, Java 7)"
+
     templates(EclipseBuildTemplate)
-    name = "Complete Build (Windows, Eclipse 4.2, Java 7)"
-    description = "Basic integration testing of the plugin for Eclipse 4.2"
 
     params {
         param("eclipse.version", "42")
