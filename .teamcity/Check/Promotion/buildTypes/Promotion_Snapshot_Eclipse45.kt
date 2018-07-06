@@ -1,6 +1,7 @@
 package Check.Promotion.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 
@@ -127,7 +128,7 @@ object Promotion_Snapshot_Eclipse45 : BuildType({
     }
 
     dependencies {
-        snapshot(Checkpoints.buildTypes.Checkpoints_Stage3Final) {
+        snapshot(Check.Checkpoints.buildTypes.Checkpoints_Stage3Final) {
         }
     }
 

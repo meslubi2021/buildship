@@ -3,7 +3,6 @@ package Check.Promotion
 import Check.Promotion.buildTypes.Promotion_BuildshipMasterMilestone
 import Check.Promotion.buildTypes.Promotion_BuildshipMasterRelease
 import Check.Promotion.buildTypes.Promotion_Snapshot_Eclipse45
-import _Self.vcsRoots.GitHubEclipseBuildship
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

@@ -1,6 +1,6 @@
 package IntegrationTests_Windows.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object IntegrationTests_Windows_Eclipse47IntegrationTestsWindows : BuildType({
     templates(_Self.buildTypes.Eclipse_Build)

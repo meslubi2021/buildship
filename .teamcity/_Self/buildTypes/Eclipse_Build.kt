@@ -1,6 +1,7 @@
 package _Self.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
 object Eclipse_Build : Template({

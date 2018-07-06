@@ -1,7 +1,7 @@
 package Commit_Windows
 
-import Commit_Windows.buildTypes.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build
+import Commit_Windows.buildTypes.Commit_Windows_Eclipse46Build
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

@@ -1,6 +1,8 @@
-package Checkpoints.buildTypes
+package Check.Checkpoints.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
 object Checkpoints_Stage2IntegrationTests : BuildType({

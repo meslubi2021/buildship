@@ -1,6 +1,6 @@
 package Commit_Windows.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Commit_Windows_Eclipse42Build : BuildType({
     templates(_Self.buildTypes.Eclipse_Build)

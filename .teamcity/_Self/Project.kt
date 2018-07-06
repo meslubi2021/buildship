@@ -1,8 +1,8 @@
 package _Self
 
-import _Self.buildTypes.*
-import _Self.vcsRoots.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import _Self.buildTypes.Eclipse_Build
+import _Self.vcsRoots.GitHubEclipseBuildship
+import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

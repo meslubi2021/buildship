@@ -1,6 +1,6 @@
 package IntegrationTests_Windows.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.retryBuild
 
 object IntegrationTests_Windows_Eclipse44Build : BuildType({

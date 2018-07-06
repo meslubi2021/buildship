@@ -1,6 +1,6 @@
 package Eclipse_Experimental.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
 object Eclipse_Experimental_Eclipse46withKotlinSupport : BuildType({

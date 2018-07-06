@@ -1,7 +1,6 @@
 package Eclipse_Experimental
 
-import Eclipse_Experimental.buildTypes.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import Eclipse_Experimental.buildTypes.Eclipse_Experimental_Eclipse46withKotlinSupport
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

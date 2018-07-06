@@ -1,6 +1,7 @@
-package Checkpoints.buildTypes
+package Check.Checkpoints.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 

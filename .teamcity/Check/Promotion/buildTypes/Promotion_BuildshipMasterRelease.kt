@@ -1,6 +1,8 @@
 package Check.Promotion.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
 object Promotion_BuildshipMasterRelease : BuildType({
@@ -118,7 +120,7 @@ object Promotion_BuildshipMasterRelease : BuildType({
     }
 
     dependencies {
-        snapshot(Checkpoints.buildTypes.Checkpoints_Stage3Final) {
+        snapshot(Check.Checkpoints.buildTypes.Checkpoints_Stage3Final) {
         }
     }
 

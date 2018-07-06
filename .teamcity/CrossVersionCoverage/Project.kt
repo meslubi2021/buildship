@@ -1,7 +1,6 @@
 package CrossVersionCoverage
 
-import CrossVersionCoverage.buildTypes.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import CrossVersionCoverage.buildTypes.CrossVersionCoverage_CrossVersionCoverageLinuxEclipse47Java9
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

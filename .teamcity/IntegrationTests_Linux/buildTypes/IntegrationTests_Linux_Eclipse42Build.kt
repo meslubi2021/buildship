@@ -1,6 +1,7 @@
 package IntegrationTests_Linux.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
 object IntegrationTests_Linux_Eclipse42Build : BuildType({
     templates(_Self.buildTypes.Eclipse_Build)
@@ -14,7 +15,7 @@ object IntegrationTests_Linux_Eclipse42Build : BuildType({
     }
 
     dependencies {
-        snapshot(Checkpoints.buildTypes.Checkpoints_Stage1Distribution) {
+        snapshot(Check.Checkpoints.buildTypes.Checkpoints_Stage1Distribution) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }
