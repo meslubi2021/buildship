@@ -1,4 +1,4 @@
-package Commit_Windows.buildTypes
+package Check.Checkpoints.Eclipse_Commit.Commit_Windows.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 

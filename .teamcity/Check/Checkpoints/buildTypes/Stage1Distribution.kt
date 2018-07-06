@@ -30,9 +30,9 @@ object Stage1Distribution : BuildType({
         }
         snapshot(Check.Checkpoints.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse47Build) {
         }
-        snapshot(Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build) {
+        snapshot(Check.Checkpoints.Eclipse_Commit.Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build) {
         }
-        snapshot(Commit_Windows.buildTypes.Commit_Windows_Eclipse46Build) {
+        snapshot(Check.Checkpoints.Eclipse_Commit.Commit_Windows.buildTypes.Commit_Windows_Eclipse46Build) {
         }
     }
 })

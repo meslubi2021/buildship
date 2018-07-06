@@ -10,7 +10,7 @@ object Project : Project({
     name = "Checkpoints"
     description = "Configurations of the stages to getting a distribution that passes QA"
 
-    buildType(Stage2IntegrationTests)
     buildType(Stage1Distribution)
+    buildType(Stage2IntegrationTests)
     buildType(Stage3Final)
 })

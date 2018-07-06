@@ -8,5 +8,5 @@ object Project : Project({
     description = "Configurations for daily development"
 
     subProject(Check.Checkpoints.Eclipse_Commit.Commit_Linux.Project)
-    subProject(Commit_Windows.Project)
+    subProject(Check.Checkpoints.Eclipse_Commit.Commit_Windows.Project)
 })
