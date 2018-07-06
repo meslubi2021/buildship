@@ -30,9 +30,9 @@ object Stage1BasicTestCoverage : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse42Build) {
+        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Eclipse42) {
         }
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse47Build) {
+        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Eclipse47) {
         }
         snapshot(Buildship.Check.Eclipse_Commit.Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build) {
         }

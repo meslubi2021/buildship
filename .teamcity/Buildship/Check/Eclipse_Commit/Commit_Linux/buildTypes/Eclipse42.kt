@@ -3,10 +3,9 @@ package Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
-object Commit_Eclipse42Build : BuildType({
+object Eclipse42 : BuildType({
     templates(EclipseBuildTemplate)
-    name = "Test Coverage (Linux, Eclipse 4.2, Java 7)"
-    description = "Building the Eclipse plugin against Eclipse 4.2"
+    name = "Basic Test Coverage (Linux, Eclipse 4.2, Java 7)"
 
     artifactRules = """
         org.eclipse.buildship.site/build/repository/** => update-site
