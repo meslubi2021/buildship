@@ -3,18 +3,21 @@ package Buildship.Promotion.buildTypes
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 
-object Promotion_Snapshot_Eclipse45 : BuildType({
-    name = "Buildship - Promote Snapshot"
+object Milestone : BuildType({
+    id("Promote_Milestone")
+    name = "Promote Milestone"
 
     artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"
 
     params {
-        param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
-        param("eclipse.release.type", "snapshot")
+        text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,
+              regex = "YES", validationMessage = "Confirm by writing YES in order to proceed.")
+        param("eclipse.release.type", "milestone")
         param("build.invoker", "ci")
+        param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
     }
 
     vcs {
@@ -104,26 +107,6 @@ object Promotion_Snapshot_Eclipse45 : BuildType({
         }
     }
 
-    triggers {
-        schedule {
-            schedulingPolicy = daily {
-                hour = 23
-            }
-            branchFilter = """
-                +:<default>
-                +:release-3.0
-            """.trimIndent()
-            triggerRules = """
-                -:docs/**
-                -:README.MD
-            """.trimIndent()
-            triggerBuild = always()
-            enforceCleanCheckout = true
-            param("revisionRule", "lastFinished")
-            param("dayOfWeek", "Sunday")
-        }
-    }
-
     failureConditions {
         errorMessage = true
     }
@@ -134,7 +117,7 @@ object Promotion_Snapshot_Eclipse45 : BuildType({
     }
 
     requirements {
-        matches("teamcity.agent.name", "dev3.*")
         contains("teamcity.agent.jvm.os.name", "Linux")
+        matches("teamcity.agent.name", "dev3.*")
     }
 })
