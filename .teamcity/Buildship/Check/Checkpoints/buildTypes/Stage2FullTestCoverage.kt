@@ -6,9 +6,9 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
-object Stage2IntegrationTests : BuildType({
-    name = "Stage 2 - Integration Tests"
-    description = "Passes integration tests"
+object Stage2FullTestCoverage : BuildType({
+    name = "Stage 2 - Full Test Coverage"
+    description = "Runs all integration tests"
 
     vcs {
         root(GitHubVcsRoot)
@@ -17,14 +17,14 @@ object Stage2IntegrationTests : BuildType({
 
     triggers {
         finishBuildTrigger {
-            buildTypeExtId = "${Stage1Distribution.id}"
+            buildTypeExtId = "${Stage1BasicTestCoverage.id}"
             successfulOnly = true
             branchFilter = "+:*"
         }
     }
 
     dependencies {
-        snapshot(Stage1Distribution) {
+        snapshot(Stage1BasicTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

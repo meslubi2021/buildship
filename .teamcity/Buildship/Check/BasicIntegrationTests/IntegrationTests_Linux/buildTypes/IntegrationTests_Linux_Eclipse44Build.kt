@@ -16,7 +16,7 @@ object IntegrationTests_Linux_Eclipse44Build : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.Stage1Distribution) {
+        snapshot(Buildship.Check.Checkpoints.buildTypes.Stage1BasicTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

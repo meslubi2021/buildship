@@ -17,15 +17,15 @@ object Stage3Final : BuildType({
 
     triggers {
         finishBuildTrigger {
-            buildTypeExtId = "${Stage2IntegrationTests.id}"
+            buildTypeExtId = "${Stage2FullTestCoverage.id}"
             branchFilter = "+:*"
         }
     }
 
     dependencies {
-        snapshot(Stage1Distribution) {
+        snapshot(Stage1BasicTestCoverage) {
         }
-        snapshot(Stage2IntegrationTests) {
+        snapshot(Stage2FullTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

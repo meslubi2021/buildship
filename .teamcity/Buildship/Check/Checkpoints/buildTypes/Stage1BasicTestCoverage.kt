@@ -6,9 +6,9 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
-object Stage1Distribution : BuildType({
-    name = "Stage 1 - Distribution"
-    description = "Builds production distributions"
+object Stage1BasicTestCoverage : BuildType({
+    name = "Stage 1 - Basic test coverage"
+    description = "Runs basic integration tests"
 
     vcs {
         root(GitHubVcsRoot)
