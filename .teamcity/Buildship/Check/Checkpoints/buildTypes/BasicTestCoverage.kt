@@ -23,7 +23,10 @@ object BasicTestCoverage : BuildType({
                 +:**
                 -:**.md
             """.trimIndent()
-            branchFilter = "-:teamcity-versioned-settings"
+            branchFilter = """
+                -:teamcity-versioned-settings
+                +:*
+            """.trimIndent()
             perCheckinTriggering = true
             groupCheckinsByCommitter = true
             enableQueueOptimization = false
