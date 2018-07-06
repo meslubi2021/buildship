@@ -1,9 +1,10 @@
 package Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes
 
+import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Commit_Eclipse47Build : BuildType({
-    templates(_Self.buildTypes.EclipseBuildTemplate)
+    templates(EclipseBuildTemplate)
     name = "Test Coverage (Linux, Eclipse 4.7, Java 8)"
     description = "Building the Eclipse plugin against Eclipse 4.7"
 

@@ -1,10 +1,11 @@
 package Buildship.Check.Eclipse_Experimental.buildTypes
 
+import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 
 object Eclipse_Experimental_Eclipse46withKotlinSupport : BuildType({
-    templates(_Self.buildTypes.EclipseBuildTemplate)
+    templates(EclipseBuildTemplate)
     name = "Eclipse 4.7 with Kotlin Support"
     description = "Basic integration testing of the plugin for Eclipse 4.7"
 

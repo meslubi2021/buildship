@@ -1,10 +1,11 @@
 package Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes
 
+import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
 object IntegrationTests_Linux_Eclipse46Build : BuildType({
-    templates(_Self.buildTypes.EclipseBuildTemplate)
+    templates(EclipseBuildTemplate)
     name = "Complete Build (Linux, Eclipse 4.6, Java 8)"
     description = "Basic integration testing of the plugin for Eclipse 4.6"
 

@@ -1,6 +1,5 @@
 package Buildship
 
-import _Self.buildTypes.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 

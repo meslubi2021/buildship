@@ -1,9 +1,10 @@
 package Buildship.Check.Eclipse_Commit.Commit_Windows.buildTypes
 
+import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Commit_Windows_Eclipse42Build : BuildType({
-    templates(_Self.buildTypes.EclipseBuildTemplate)
+    templates(EclipseBuildTemplate)
     name = "Test Coverage (Windows, Eclipse 4.2, Java 7)"
     description = "Building the Eclipse plugin against Eclipse 4.2"
 

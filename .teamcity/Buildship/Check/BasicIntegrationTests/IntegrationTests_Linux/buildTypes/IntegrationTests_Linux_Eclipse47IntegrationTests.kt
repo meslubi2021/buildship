@@ -1,10 +1,11 @@
 package Buildship.Check.BasicIntegrationTests.IntegrationTests_Linux.buildTypes
 
+import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
 object IntegrationTests_Linux_Eclipse47IntegrationTests : BuildType({
-    templates(_Self.buildTypes.EclipseBuildTemplate)
+    templates(EclipseBuildTemplate)
     name = "Complete Build (Linux, Eclipse 4.7, Java 8)"
     description = "Basic integration testing of the plugin for Eclipse 4.7"
 
