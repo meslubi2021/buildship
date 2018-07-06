@@ -129,7 +129,7 @@ object Promotion_Snapshot_Eclipse45 : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.Stage3Final) {
+        snapshot(Buildship.Check.Checkpoints.buildTypes.Final) {
         }
     }
 

@@ -6,8 +6,8 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
-object Stage3Final : BuildType({
-    name = "Stage 3 - Final"
+object Final : BuildType({
+    name = "Final"
     description = "Passes all QA stages"
 
     vcs {
@@ -17,15 +17,15 @@ object Stage3Final : BuildType({
 
     triggers {
         finishBuildTrigger {
-            buildTypeExtId = "${Stage2FullTestCoverage.id}"
+            buildTypeExtId = "${FullTestCoverage.id}"
             branchFilter = "+:*"
         }
     }
 
     dependencies {
-        snapshot(Stage1BasicTestCoverage) {
+        snapshot(BasicTestCoverage) {
         }
-        snapshot(Stage2FullTestCoverage) {
+        snapshot(FullTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

@@ -6,8 +6,8 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
-object Stage1BasicTestCoverage : BuildType({
-    name = "Stage 1 - Basic test coverage"
+object BasicTestCoverage : BuildType({
+    name = "Basic Test Coverage"
     description = "Runs basic integration tests"
 
     vcs {

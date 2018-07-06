@@ -17,7 +17,7 @@ object IntegrationTests_Linux_CompleteBuildLinuxEclipse48Java8 : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.Stage1BasicTestCoverage) {
+        snapshot(Buildship.Check.Checkpoints.buildTypes.BasicTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

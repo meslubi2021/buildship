@@ -121,7 +121,7 @@ object Promotion_BuildshipMasterRelease : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.Stage3Final) {
+        snapshot(Buildship.Check.Checkpoints.buildTypes.Final) {
         }
     }
 
