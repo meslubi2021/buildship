@@ -5,9 +5,10 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
 
 object CrossVersionCoverage_CrossVersionCoverageLinuxEclipse47Java9 : BuildType({
+    id("Cross_Version_Coverage_Linux_Eclipse47_java9")
+    name = "Cross-Version Coverage (Linux, Eclipse 4.7, Java 9)"
+
     templates(EclipseBuildTemplate)
-    name = "Cross-version Coverage (Linux, Eclipse 4.7, Java 9)"
-    description = "Basic integration testing of the plugin for Eclipse 4.7"
 
     params {
         param("eclipse.version", "47")

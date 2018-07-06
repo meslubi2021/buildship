@@ -10,11 +10,11 @@ object Project : Project({
                                    Buildship.Check.BasicTestCoverage.Project,
                                    Buildship.Check.FullTestCoverage.Project,
                                    Buildship.Check.CrossVersionCoverage.Project,
-                                   Buildship.Check.Eclipse_Experimental.Project)
+                                   Buildship.Check.Experimental.Project)
 
     subProject(Buildship.Check.Checkpoints.Project)
     subProject(Buildship.Check.BasicTestCoverage.Project)
     subProject(Buildship.Check.FullTestCoverage.Project)
     subProject(Buildship.Check.CrossVersionCoverage.Project)
-    subProject(Buildship.Check.Eclipse_Experimental.Project)
+    subProject(Buildship.Check.Experimental.Project)
 })
