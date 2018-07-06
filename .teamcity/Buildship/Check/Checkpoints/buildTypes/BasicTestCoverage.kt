@@ -1,4 +1,4 @@
-package Buildship.Check.Checkpoints
+package Buildship.Check.Checkpoints.buildTypes
 
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
@@ -31,13 +31,9 @@ object BasicTestCoverage : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse42) {
-        }
-        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse47) {
-        }
-        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse42) {
-        }
-        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse46) {
-        }
+        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse42, CheckpointUtils.DefaultFailureCondition)
+        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse47, CheckpointUtils.DefaultFailureCondition)
+        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse42, CheckpointUtils.DefaultFailureCondition)
+        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse46, CheckpointUtils.DefaultFailureCondition)
     }
 })

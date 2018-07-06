@@ -1,7 +1,9 @@
 package Buildship
 
+import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_1.SnapshotDependency
 
 object Project : Project({
     description = "Eclipse plugins for Gradle http://eclipse.org/buildship"

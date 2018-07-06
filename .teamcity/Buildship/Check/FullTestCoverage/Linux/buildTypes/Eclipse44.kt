@@ -1,6 +1,6 @@
 package Buildship.Check.FullTestCoverage.Linux.buildTypes
 
-import Buildship.Check.Checkpoints.BasicTestCoverage
+import Buildship.Check.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction

@@ -1,6 +1,6 @@
 package Buildship.Promotion.buildTypes
 
-import Buildship.Check.Checkpoints.Final
+import Buildship.Check.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
