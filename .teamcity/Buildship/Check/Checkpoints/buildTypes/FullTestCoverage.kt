@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
 object FullTestCoverage : BuildType({
+    id("Checkpoint_Full_Test_Coverage")
     name = "Full Test Coverage"
     description = "Runs all integration tests"
 

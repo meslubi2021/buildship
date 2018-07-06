@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 object BasicTestCoverage : BuildType({
+    id("Checkpoint_Basic_Test_Coverage")
     name = "Basic Test Coverage"
     description = "Runs basic integration tests"
 
@@ -30,13 +31,13 @@ object BasicTestCoverage : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Eclipse42) {
+        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse42) {
         }
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes.Eclipse47) {
+        snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse47) {
         }
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build) {
+        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse42) {
         }
-        snapshot(Buildship.Check.Eclipse_Commit.Commit_Windows.buildTypes.Commit_Windows_Eclipse46Build) {
+        snapshot(Buildship.Check.BasicTestCoverage.Windows.buildTypes.Eclipse46) {
         }
     }
 })

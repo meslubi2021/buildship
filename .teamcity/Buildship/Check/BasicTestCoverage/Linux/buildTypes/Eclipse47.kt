@@ -1,11 +1,13 @@
-package Buildship.Check.Eclipse_Commit.Commit_Linux.buildTypes
+package Buildship.Check.BasicTestCoverage.Linux.buildTypes
 
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Eclipse47 : BuildType({
-    templates(EclipseBuildTemplate)
+    id("Basic_Test_Coverage_Linux_Eclipse47_java8")
     name = "Basic Test Coverage (Linux, Eclipse 4.7, Java 8)"
+
+    templates(EclipseBuildTemplate)
 
     artifactRules = """
         org.eclipse.buildship.core.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.core.test

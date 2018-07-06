@@ -7,6 +7,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
 
 object Final : BuildType({
+    id("Checkpoint_Final")
     name = "Final"
     description = "Passes all QA stages"
 
