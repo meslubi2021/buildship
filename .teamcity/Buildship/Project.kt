@@ -1,14 +1,13 @@
 package Buildship
 
 import _Self.buildTypes.EclipseBuildTemplate
-import _Self.vcsRoots.GitHubEclipseBuildship
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
     description = "Eclipse plugins for Gradle    http://eclipse.org/buildship"
 
-    vcsRoot(GitHubEclipseBuildship)
+    vcsRoot(GitHubVcsRoot)
 
     template(EclipseBuildTemplate)
 

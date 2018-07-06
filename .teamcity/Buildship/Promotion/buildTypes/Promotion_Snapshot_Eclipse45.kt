@@ -1,5 +1,6 @@
 package Buildship.Promotion.buildTypes
 
+import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
@@ -17,7 +18,7 @@ object Promotion_Snapshot_Eclipse45 : BuildType({
     }
 
     vcs {
-        root(_Self.vcsRoots.GitHubEclipseBuildship)
+        root(GitHubVcsRoot)
 
         checkoutMode = CheckoutMode.ON_AGENT
         cleanCheckout = true

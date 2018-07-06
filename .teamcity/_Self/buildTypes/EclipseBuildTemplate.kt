@@ -1,5 +1,6 @@
 package _Self.buildTypes
 
+import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
@@ -22,7 +23,7 @@ object EclipseBuildTemplate : Template({
     }
 
     vcs {
-        root(_Self.vcsRoots.GitHubEclipseBuildship)
+        root(GitHubVcsRoot)
 
         checkoutMode = CheckoutMode.ON_AGENT
     }

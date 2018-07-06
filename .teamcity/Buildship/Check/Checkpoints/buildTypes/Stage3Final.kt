@@ -1,5 +1,6 @@
 package Buildship.Check.Checkpoints.buildTypes
 
+import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
@@ -10,7 +11,7 @@ object Stage3Final : BuildType({
     description = "Passes all QA stages"
 
     vcs {
-        root(_Self.vcsRoots.GitHubEclipseBuildship)
+        root(GitHubVcsRoot)
         checkoutMode = CheckoutMode.ON_AGENT
     }
 
