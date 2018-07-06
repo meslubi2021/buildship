@@ -3,7 +3,7 @@ package Check.Checkpoints.Eclipse_Commit
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
-    id("Eclipse_Commit")
+    id("Check/Checkpoints/Eclipse_Commit")
     name = "Commit Builds"
     description = "Configurations for daily development"
 

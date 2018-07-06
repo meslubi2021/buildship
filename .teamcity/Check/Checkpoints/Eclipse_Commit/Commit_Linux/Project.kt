@@ -5,7 +5,7 @@ import Check.Checkpoints.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse47
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
-    id("Commit_Linux")
+    id("Check/Checkpoints/Eclipse_Commit/Commit_Linux")
     name = "Commit Builds Linux"
 
     buildType(Commit_Eclipse47Build)
