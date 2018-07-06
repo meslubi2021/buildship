@@ -30,4 +30,4 @@ the 'Debug' option is available in the context menu for the task.
 */
 
 version = "2018.1"
-project(_Self.Project)
+project(Buildship.Project)
