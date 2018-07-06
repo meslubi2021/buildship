@@ -1,5 +1,6 @@
 package Buildship.Check.FullTestCoverage.Linux.buildTypes
 
+import Buildship.Check.Checkpoints.BasicTestCoverage
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
@@ -18,7 +19,7 @@ object Eclipse47Java9 : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.BasicTestCoverage) {
+        snapshot(BasicTestCoverage) {
             onDependencyFailure = FailureAction.CANCEL
             onDependencyCancel = FailureAction.CANCEL
         }

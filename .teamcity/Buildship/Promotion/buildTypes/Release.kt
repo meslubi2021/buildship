@@ -1,5 +1,6 @@
 package Buildship.Promotion.buildTypes
 
+import Buildship.Check.Checkpoints.Final
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
@@ -122,7 +123,7 @@ object Release : BuildType({
     }
 
     dependencies {
-        snapshot(Buildship.Check.Checkpoints.buildTypes.Final) {
+        snapshot(Final) {
         }
     }
 

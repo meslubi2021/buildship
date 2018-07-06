@@ -1,8 +1,5 @@
 package Buildship.Check.Checkpoints
 
-import Buildship.Check.Checkpoints.buildTypes.BasicTestCoverage
-import Buildship.Check.Checkpoints.buildTypes.FullTestCoverage
-import Buildship.Check.Checkpoints.buildTypes.Final
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({

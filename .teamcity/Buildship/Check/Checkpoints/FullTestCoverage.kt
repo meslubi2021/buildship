@@ -1,4 +1,4 @@
-package Buildship.Check.Checkpoints.buildTypes
+package Buildship.Check.Checkpoints
 
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
