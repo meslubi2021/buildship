@@ -11,11 +11,6 @@ object Eclipse46 : BuildType({
 
     description = "Building the Eclipse plugin against Eclipse 4.6 without running the tests"
 
-    artifactRules = """
-        org.eclipse.buildship.core.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.core.test
-        org.eclipse.buildship.ui.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.ui.test
-    """.trimIndent()
-
     params {
         param("eclipse.version", "46")
         param("compiler.location", """%windows.java8.oracle.64bit%\bin\javac""")

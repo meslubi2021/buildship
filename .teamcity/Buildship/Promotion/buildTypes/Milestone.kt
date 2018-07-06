@@ -2,6 +2,7 @@ package Buildship.Promotion.buildTypes
 
 import Buildship.Check.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
+import Buildship.Promotion.PromotionTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
@@ -11,7 +12,7 @@ object Milestone : BuildType({
     id("Promote_Milestone")
     name = "Promote Milestone"
 
-    artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"
+    templates(PromotionTemplate)
 
     params {
         text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,

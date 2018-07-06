@@ -2,6 +2,7 @@ package Buildship.Promotion.buildTypes
 
 import Buildship.Check.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
+import Buildship.Promotion.PromotionTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
@@ -11,7 +12,7 @@ object Release : BuildType({
     id("Promote_Release")
     name = "Promote Release"
 
-    artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"
+    templates(PromotionTemplate)
 
     params {
         text("Confirm", "NO", label = "Do you want to proceed with the release?", description = "Read the release instructions document before proceeding. Confirm to publish a new release.", display = ParameterDisplay.PROMPT,

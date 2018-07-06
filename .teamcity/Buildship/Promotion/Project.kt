@@ -10,6 +10,8 @@ object Project : Project({
     name = "Promotion"
     description = "Promotes Buildship releases"
 
+    template(PromotionTemplate)
+
     buildType(Snapshot)
     buildType(Release)
     buildType(Milestone)

@@ -2,6 +2,7 @@ package Buildship.Promotion.buildTypes
 
 import Buildship.Check.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
+import Buildship.Promotion.PromotionTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
@@ -11,7 +12,7 @@ object Snapshot : BuildType({
     id("Promote_Snapshot")
     name = "Promote Snapshot"
 
-    artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"
+    templates(PromotionTemplate)
 
     params {
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")

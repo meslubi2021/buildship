@@ -9,13 +9,6 @@ object Eclipse42 : BuildType({
 
     templates(EclipseBuildTemplate)
 
-    artifactRules = """
-        org.eclipse.buildship.site/build/repository/** => update-site
-        org.eclipse.buildship.core.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.core.test
-        org.eclipse.buildship.ui.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.ui.test
-        org.eclipse.buildship.stsmigration.test/build/screenshots => test/screenshots
-    """.trimIndent()
-
     params {
         param("eclipse.version", "42")
         param("compiler.location", "%linux.java7.oracle.64bit%/bin/javac")

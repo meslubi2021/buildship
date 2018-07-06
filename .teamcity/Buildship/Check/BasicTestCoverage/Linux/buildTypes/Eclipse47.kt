@@ -9,11 +9,6 @@ object Eclipse47 : BuildType({
 
     templates(EclipseBuildTemplate)
 
-    artifactRules = """
-        org.eclipse.buildship.core.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.core.test
-        org.eclipse.buildship.ui.test/build/eclipseTest/workspace/.metadata/.log => test/org.eclipse.buildship.ui.test
-    """.trimIndent()
-
     params {
         param("eclipse.version", "47")
         param("compiler.location", "%linux.java8.oracle.64bit%/bin/javac")
