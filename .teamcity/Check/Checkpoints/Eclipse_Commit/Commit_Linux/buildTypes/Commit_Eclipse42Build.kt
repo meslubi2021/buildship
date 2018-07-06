@@ -1,4 +1,4 @@
-package Commit_Linux.buildTypes
+package Check.Checkpoints.Eclipse_Commit.Commit_Linux.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 

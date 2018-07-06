@@ -7,7 +7,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
     id("Check/Checkpoints")
-    name = "Check/Checkpoints"
+    name = "Checkpoints"
     description = "Configurations of the stages to getting a distribution that passes QA"
 
     buildType(Stage2IntegrationTests)

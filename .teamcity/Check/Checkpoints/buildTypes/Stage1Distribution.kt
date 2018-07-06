@@ -2,7 +2,6 @@ package Check.Checkpoints.buildTypes
 
 import _Self.buildTypes.CheckpointTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
@@ -27,9 +26,9 @@ object Stage1Distribution : BuildType({
     }
 
     dependencies {
-        snapshot(Commit_Linux.buildTypes.Commit_Eclipse42Build) {
+        snapshot(Check.Checkpoints.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse42Build) {
         }
-        snapshot(Commit_Linux.buildTypes.Commit_Eclipse47Build) {
+        snapshot(Check.Checkpoints.Eclipse_Commit.Commit_Linux.buildTypes.Commit_Eclipse47Build) {
         }
         snapshot(Commit_Windows.buildTypes.Commit_Windows_Eclipse42Build) {
         }
