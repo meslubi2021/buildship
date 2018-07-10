@@ -3,6 +3,7 @@ package Buildship
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.retryBuild
 
 object EclipseBuildTemplate : Template({
     name = "Tooling-Eclipse-Build"
@@ -25,6 +26,13 @@ object EclipseBuildTemplate : Template({
         root(GitHubVcsRoot)
 
         checkoutMode = CheckoutMode.ON_AGENT
+    }
+
+    triggers {
+        retryBuild {
+            delaySeconds = 0
+            attempts = 2
+        }
     }
 
     steps {
