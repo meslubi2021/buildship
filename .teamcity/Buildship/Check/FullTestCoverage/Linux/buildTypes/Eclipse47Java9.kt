@@ -27,6 +27,5 @@ object Eclipse47Java9 : BuildType({
 
     requirements {
         contains("teamcity.agent.jvm.os.name", "Linux", "RQ_650")
-        doesNotEqual("system.agent.name", "ubuntu6-agent1", "RQ_651")
     }
 })
