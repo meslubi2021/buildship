@@ -20,6 +20,7 @@ object EclipseBuildTemplate : Template({
         param("eclipse.test.java.home", "%env.JAVA_HOME%")
         param("gradle.tasks", "clean build")
         param("env.JAVA_HOME", "%linux.java7.oracle.64bit%")
+        param("eclipsetest.mirrors", "jcenter:http://dev12.gradle.org:8081/artifactory/jcenter")
     }
 
     vcs {
@@ -41,7 +42,7 @@ object EclipseBuildTemplate : Template({
             id = "RUNNER_21"
             tasks = "%gradle.tasks%"
             buildFile = ""
-            gradleParams = "-Peclipse.version=%eclipse.version% -Pcompiler.location='%compiler.location%' -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -Peclipse.test.java.home='%eclipse.test.java.home%' --info --stacktrace -Declipse.p2.mirror=false -Dscan"
+            gradleParams = "-Peclipse.version=%eclipse.version% -Pcompiler.location='%compiler.location%' -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -Peclipse.test.java.home='%eclipse.test.java.home%' --info --stacktrace -Declipse.p2.mirror=false -Dscan -Pmirrors=%eclipsetest.mirrors%"
             jvmArgs = "-XX:MaxPermSize=256m"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
