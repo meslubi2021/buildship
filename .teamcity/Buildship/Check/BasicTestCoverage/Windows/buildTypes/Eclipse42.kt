@@ -19,6 +19,5 @@ object Eclipse42 : BuildType({
 
     requirements {
         contains("teamcity.agent.jvm.os.name", "Windows", "RQ_334")
-        doesNotMatch("teamcity.agent.name", "windows1-agent1", "RQ_335")
     }
 })

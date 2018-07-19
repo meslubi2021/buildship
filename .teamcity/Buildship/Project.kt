@@ -13,8 +13,8 @@ object Project : Project({
     template(EclipseBuildTemplate)
 
     params {
-        password("eclipse.downloadServer.password", "credentialsJSON:3b651471-b495-4e6e-9708-f2d7860c90f7", label = "Password", display = ParameterDisplay.HIDDEN)
         param("env.JAVA_TOOL_OPTIONS", "-Dfile.encoding=UTF8")
+        password("eclipse.downloadServer.password", "credentialsJSON:3b651471-b495-4e6e-9708-f2d7860c90f7", label = "Password", display = ParameterDisplay.HIDDEN)
         password("eclipse.downloadServer.username", "credentialsJSON:23f3947f-45b2-46b8-83f6-9341c9b914f6", label = "Username", display = ParameterDisplay.HIDDEN)
     }
 

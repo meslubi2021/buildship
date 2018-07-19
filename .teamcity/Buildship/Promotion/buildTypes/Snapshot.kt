@@ -20,14 +20,6 @@ object Snapshot : BuildType({
         param("build.invoker", "ci")
     }
 
-    vcs {
-        root(GitHubVcsRoot)
-
-        checkoutMode = CheckoutMode.ON_AGENT
-        cleanCheckout = true
-        showDependenciesChanges = true
-    }
-
     steps {
         gradle {
             name = "Build and upload update site for Eclipse 4.2 (Juno)"
@@ -125,19 +117,5 @@ object Snapshot : BuildType({
             param("revisionRule", "lastFinished")
             param("dayOfWeek", "Sunday")
         }
-    }
-
-    failureConditions {
-        errorMessage = true
-    }
-
-    dependencies {
-        snapshot(Final) {
-        }
-    }
-
-    requirements {
-        matches("teamcity.agent.name", "dev3.*")
-        contains("teamcity.agent.jvm.os.name", "Linux")
     }
 })

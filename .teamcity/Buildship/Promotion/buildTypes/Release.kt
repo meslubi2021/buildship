@@ -22,14 +22,6 @@ object Release : BuildType({
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
     }
 
-    vcs {
-        root(GitHubVcsRoot)
-
-        checkoutMode = CheckoutMode.ON_AGENT
-        cleanCheckout = true
-        showDependenciesChanges = true
-    }
-
     steps {
         gradle {
             name = "Build and upload update site for Eclipse 4.2 (Juno)"
@@ -117,19 +109,5 @@ object Release : BuildType({
                 --stacktrace
             """.trimIndent()
         }
-    }
-
-    failureConditions {
-        errorMessage = true
-    }
-
-    dependencies {
-        snapshot(Final) {
-        }
-    }
-
-    requirements {
-        matches("teamcity.agent.name", "dev3.*")
-        contains("teamcity.agent.jvm.os.name", "Linux")
     }
 })
