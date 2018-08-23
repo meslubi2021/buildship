@@ -25,9 +25,7 @@ object Eclipse47Java9 : BuildType({
                 hour = 4
                 timezone = "Europe/Budapest"
             }
-            branchFilter = """
-                +:donat/cleanup/add-test-coverage
-            """.trimIndent() // TODO (donat) already defined in the non 3.0 pipeline
+            branchFilter = "+:release-3.0"
             triggerBuild = always()
             param("revisionRule", "lastFinished")
             param("dayOfWeek", "Sunday")

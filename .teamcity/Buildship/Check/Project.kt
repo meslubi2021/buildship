@@ -9,12 +9,10 @@ object Project : Project({
     subProjectsOrder = arrayListOf(Buildship.Check.Checkpoints.Project,
                                    Buildship.Check.BasicTestCoverage.Project,
                                    Buildship.Check.FullTestCoverage.Project,
-                                   Buildship.Check.CrossVersionCoverage.Project,
                                    Buildship.Check.Experimental.Project)
 
     subProject(Buildship.Check.Checkpoints.Project)
     subProject(Buildship.Check.BasicTestCoverage.Project)
     subProject(Buildship.Check.FullTestCoverage.Project)
-    subProject(Buildship.Check.CrossVersionCoverage.Project)
     subProject(Buildship.Check.Experimental.Project)
 })
