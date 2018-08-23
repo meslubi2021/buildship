@@ -22,6 +22,7 @@ object FullTestCoverage : BuildType({
             branchFilter = """
                 -:teamcity-versioned-settings
                 -:release-3.0
+                -:donat/stable-api/*
                 +:*
             """.trimIndent()
         }

@@ -21,6 +21,7 @@ object Final : BuildType({
             branchFilter = """
                 -:teamcity-versioned-settings
                 -:release-3.0
+                -:donat/stable-api/*
                 +:*
             """.trimIndent()
         }

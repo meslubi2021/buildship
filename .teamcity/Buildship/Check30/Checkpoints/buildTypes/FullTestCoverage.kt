@@ -19,7 +19,10 @@ object FullTestCoverage : BuildType({
         finishBuildTrigger {
             buildTypeExtId = "${BasicTestCoverage.id}"
             successfulOnly = true
-            branchFilter = "+:release-3.0"
+            branchFilter = """
+                +:release-3.0"
+                +:donat/stable-api/*
+            """.trimIndent()
         }
     }
 

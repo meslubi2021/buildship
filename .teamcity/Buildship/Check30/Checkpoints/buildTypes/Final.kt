@@ -18,7 +18,10 @@ object Final : BuildType({
     triggers {
         finishBuildTrigger {
             buildTypeExtId = "${FullTestCoverage.id}"
-            branchFilter = "+:release-3.0"
+            branchFilter = """
+                +:release-3.0"
+                +:donat/stable-api/*
+            """.trimIndent()
         }
     }
 

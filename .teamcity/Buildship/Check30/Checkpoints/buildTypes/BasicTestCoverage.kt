@@ -25,6 +25,7 @@ object BasicTestCoverage : BuildType({
             """.trimIndent()
             branchFilter = """
                 +:release-3.0
+                +:donat/stable-api/*
             """.trimIndent()
             perCheckinTriggering = true
             groupCheckinsByCommitter = true
