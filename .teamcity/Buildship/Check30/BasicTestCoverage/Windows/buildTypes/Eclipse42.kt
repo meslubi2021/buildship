@@ -4,17 +4,17 @@ import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 
 object Eclipse42 : BuildType({
-    id("Basic_Test_Coverage_Windows_Eclipse42_java7_30")
-    name = "Basic Test Coverage (Windows, Eclipse 4.2, Java 7)"
+    id("Basic_Test_Coverage_Windows_Eclipse42_java8_30")
+    name = "Basic Test Coverage (Windows, Eclipse 4.2, Java 8)"
 
     templates(EclipseBuildTemplate)
 
     params {
         param("eclipse.version", "42")
-        param("compiler.location", """%windows.java7.oracle.64bit%\bin\javac""")
-        param("eclipse.test.java.home", "%windows.java7.oracle.64bit%")
+        param("compiler.location", """%windows.java8.oracle.64bit%\bin\javac""")
+        param("eclipse.test.java.home", "%windows.java8.oracle.64bit%")
         param("gradle.tasks", "clean eclipseTest")
-        param("env.JAVA_HOME", "%windows.java7.oracle.64bit%")
+        param("env.JAVA_HOME", "%windows.java8.oracle.64bit%")
     }
 
     requirements {
