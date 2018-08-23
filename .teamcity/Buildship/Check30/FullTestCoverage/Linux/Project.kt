@@ -7,7 +7,6 @@ object Project : Project({
     id("Full_Test_Coverage_Linux_30")
     name = "Full Test Coverage - Linux"
 
-    buildType(Eclipse42)
     buildType(Eclipse44)
     buildType(Eclipse47)
     buildType(Eclipse48)

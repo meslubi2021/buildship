@@ -29,7 +29,6 @@ object FullTestCoverage : BuildType({
     dependencies {
         snapshot(BasicTestCoverage, CheckpointUtils.DefaultFailureCondition)
 
-        snapshot(Buildship.Check30.FullTestCoverage.Linux.buildTypes.Eclipse42, CheckpointUtils.DefaultFailureCondition)
         snapshot(Buildship.Check30.FullTestCoverage.Linux.buildTypes.Eclipse43, CheckpointUtils.DefaultFailureCondition)
         snapshot(Buildship.Check30.FullTestCoverage.Linux.buildTypes.Eclipse44, CheckpointUtils.DefaultFailureCondition)
         snapshot(Buildship.Check30.FullTestCoverage.Linux.buildTypes.Eclipse45, CheckpointUtils.DefaultFailureCondition)
