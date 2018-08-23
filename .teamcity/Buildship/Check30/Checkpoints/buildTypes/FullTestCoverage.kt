@@ -19,7 +19,7 @@ object FullTestCoverage : BuildType({
         finishBuildTrigger {
             buildTypeExtId = "${BasicTestCoverage.id}"
             successfulOnly = true
-            branchFilter = "+:*"
+            branchFilter = "+:release-3.0"
         }
     }
 

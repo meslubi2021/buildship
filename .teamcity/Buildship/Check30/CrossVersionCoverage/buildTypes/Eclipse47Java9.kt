@@ -27,8 +27,7 @@ object Eclipse47Java9 : BuildType({
             }
             branchFilter = """
                 +:donat/cleanup/add-test-coverage
-                +:release-3.0
-            """.trimIndent()
+            """.trimIndent() // TODO (donat) already defined in the non 3.0 pipeline
             triggerBuild = always()
             param("revisionRule", "lastFinished")
             param("dayOfWeek", "Sunday")

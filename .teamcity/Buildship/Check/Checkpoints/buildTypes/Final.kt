@@ -18,7 +18,11 @@ object Final : BuildType({
     triggers {
         finishBuildTrigger {
             buildTypeExtId = "${FullTestCoverage.id}"
-            branchFilter = "+:*"
+            branchFilter = """
+                -:teamcity-versioned-settings
+                -:release-3.0
+                +:*
+            """.trimIndent()
         }
     }
 

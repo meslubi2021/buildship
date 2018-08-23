@@ -19,7 +19,11 @@ object FullTestCoverage : BuildType({
         finishBuildTrigger {
             buildTypeExtId = "${BasicTestCoverage.id}"
             successfulOnly = true
-            branchFilter = "+:*"
+            branchFilter = """
+                -:teamcity-versioned-settings
+                -:release-3.0
+                +:*
+            """.trimIndent()
         }
     }
 
