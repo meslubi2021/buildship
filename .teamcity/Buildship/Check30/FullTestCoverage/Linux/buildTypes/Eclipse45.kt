@@ -15,6 +15,7 @@ object Eclipse45 : BuildType({
         param("eclipse.version", "45")
         param("compiler.location", "%linux.java8.oracle.64bit%/bin/javac")
         param("eclipse.test.java.home", "%linux.java8.oracle.64bit%")
+        param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
     }
 
     dependencies {
