@@ -1,6 +1,6 @@
 package Buildship.Promotion30.buildTypes
 
-import Buildship.Promotion30.PromotionTemplate
+import Buildship.Promotion30.Promotion30Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
@@ -9,7 +9,7 @@ object Milestone : BuildType({
     id("Promote30_Milestone")
     name = "Promote Milestone"
 
-    templates(PromotionTemplate)
+    templates(Promotion30Template)
 
     params {
         text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,

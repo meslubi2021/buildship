@@ -10,7 +10,7 @@ object Project : Project({
     name = "Promotion30"
     description = "Promotes Buildship releases"
 
-    template(PromotionTemplate)
+    template(Promotion30Template)
 
     buildType(Snapshot)
     buildType(Release)

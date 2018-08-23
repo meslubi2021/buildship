@@ -5,8 +5,7 @@ import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
 import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 
-object PromotionTemplate : Template({
-    id("Promotion30 Template")
+object Promotion30Template : Template({
     name = "Promotion30 Template"
 
     artifactRules = "org.eclipse.buildship.site/build/repository/** => update-site"

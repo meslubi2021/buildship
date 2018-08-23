@@ -1,6 +1,6 @@
 package Buildship.Promotion30.buildTypes
 
-import Buildship.Promotion30.PromotionTemplate
+import Buildship.Promotion30.Promotion30Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
@@ -9,7 +9,7 @@ object Release : BuildType({
     id("Promote30_Release")
     name = "Promote Release"
 
-    templates(PromotionTemplate)
+    templates(Promotion30Template)
 
     params {
         text("Confirm", "NO", label = "Do you want to proceed with the release?", description = "Read the release instructions document before proceeding. Confirm to publish a new release.", display = ParameterDisplay.PROMPT,

@@ -1,6 +1,6 @@
 package Buildship.Promotion30.buildTypes
 
-import Buildship.Promotion30.PromotionTemplate
+import Buildship.Promotion30.Promotion30Template
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
@@ -9,7 +9,7 @@ object Snapshot : BuildType({
     id("Promote30_Snapshot")
     name = "Promote Snapshot"
 
-    templates(PromotionTemplate)
+    templates(Promotion30Template)
 
     params {
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
