@@ -101,10 +101,7 @@ object Snapshot : BuildType({
             schedulingPolicy = daily {
                 hour = 23
             }
-            branchFilter = """
-                +:<default>
-                +:release-3.0
-            """.trimIndent()
+            branchFilter = "+:release-3.0"
             triggerRules = """
                 -:docs/**
                 -:README.MD
