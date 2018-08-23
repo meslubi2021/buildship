@@ -27,4 +27,5 @@ object Project : Project({
 
     subProject(Buildship.Promotion.Project)
     subProject(Buildship.Check.Project)
+    subProject(Buildship.Check30.Project)
 })

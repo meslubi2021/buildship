@@ -1,0 +1,12 @@
+package Buildship.Check30.BasicTestCoverage.Linux
+
+import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+
+object Project : Project({
+    id("Basic_Test_Coverage_Linux_30")
+    name = "Basic Test Coverage - Linux"
+    description = "Configurations that provide basic test coverage"
+
+    buildType(Buildship.Check30.BasicTestCoverage.Linux.buildTypes.Eclipse42)
+    buildType(Buildship.Check30.BasicTestCoverage.Linux.buildTypes.Eclipse47)
+})
