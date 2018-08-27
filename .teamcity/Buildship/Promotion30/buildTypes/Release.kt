@@ -21,17 +21,6 @@ object Release : BuildType({
 
     steps {
         gradle {
-            name = "Build and upload update site for Eclipse 4.2 (Juno)"
-            tasks = "clean build uploadUpdateSite"
-            buildFile = ""
-            gradleParams = """
-                --exclude-task eclipseTest
-                -Peclipse.version=42 -Pcompiler.location='%linux.java8.oracle.64bit%/bin/javac' -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=build.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=/home/data/httpd/download.eclipse.org/buildship/updates -PECLIPSE_ORG_TEMP_PATH=/home/data/httpd/download.eclipse.org/buildship/temp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates
-                --stacktrace -Declipse.p2.mirror=false
-            """.trimIndent()
-            param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-        }
-        gradle {
             name = "Build and upload update site for Eclipse 4.3 (Kepler)"
             tasks = "clean build uploadUpdateSite"
             buildFile = ""
