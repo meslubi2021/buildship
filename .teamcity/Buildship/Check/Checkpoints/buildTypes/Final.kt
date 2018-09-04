@@ -27,6 +27,10 @@ object Final : BuildType({
         }
     }
 
+    requirements {
+        contains("teamcity.agent.jvm.os.name", "Linux")
+    }
+
     dependencies {
         snapshot(BasicTestCoverage, CheckpointUtils.DefaultFailureCondition)
         snapshot(FullTestCoverage, CheckpointUtils.DefaultFailureCondition)

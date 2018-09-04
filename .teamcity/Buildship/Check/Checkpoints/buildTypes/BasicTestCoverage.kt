@@ -35,6 +35,10 @@ object BasicTestCoverage : BuildType({
         }
     }
 
+    requirements {
+        contains("teamcity.agent.jvm.os.name", "Linux")
+    }
+
     dependencies {
         snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse42, CheckpointUtils.DefaultFailureCondition)
         snapshot(Buildship.Check.BasicTestCoverage.Linux.buildTypes.Eclipse47, CheckpointUtils.DefaultFailureCondition)
