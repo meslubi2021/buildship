@@ -3,6 +3,7 @@ package Buildship.Promotion
 import Buildship.Check.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
 import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 import jetbrains.buildServer.configs.kotlin.v2018_1.Template
 
 object PromotionTemplate : Template({
@@ -32,6 +33,8 @@ object PromotionTemplate : Template({
 
     dependencies {
         snapshot(Final) {
+            onDependencyFailure = FailureAction.FAIL_TO_START
+            onDependencyCancel = FailureAction.CANCEL
         }
     }
 })
