@@ -27,6 +27,7 @@ object BasicTestCoverage : BuildType({
                 -:teamcity-versioned-settings
                 -:release-3.0
                 -:donat/stable-api/*
+                -:donat/public-tapi/*
                 +:*
             """.trimIndent()
             perCheckinTriggering = true

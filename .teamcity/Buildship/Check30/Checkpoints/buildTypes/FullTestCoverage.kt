@@ -22,6 +22,7 @@ object FullTestCoverage : BuildType({
             branchFilter = """
                 +:release-3.0"
                 +:donat/stable-api/*
+                +:donat/public-tapi/*
             """.trimIndent()
         }
     }
