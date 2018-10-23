@@ -8,5 +8,5 @@ object Project : Project({
     description = "Configurations that provide basic test coverage"
 
     buildType(Buildship.Check30.BasicTestCoverage.Linux.buildTypes.Eclipse43)
-    buildType(Buildship.Check30.BasicTestCoverage.Linux.buildTypes.Eclipse47)
+    buildType(Buildship.Check30.BasicTestCoverage.Linux.buildTypes.Eclipse49)
 })
