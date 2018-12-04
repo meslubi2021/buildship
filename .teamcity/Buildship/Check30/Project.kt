@@ -3,8 +3,8 @@ package Buildship.Check30
 import jetbrains.buildServer.configs.kotlin.v2018_1.Project
 
 object Project : Project({
-    id("Check30")
-    name = "Check 3.0"
+    id("Check")
+    name = "Check"
     description = "Test coverage"
     subProjectsOrder = arrayListOf(Buildship.Check30.Checkpoints.Project,
                                    Buildship.Check30.BasicTestCoverage.Project,
