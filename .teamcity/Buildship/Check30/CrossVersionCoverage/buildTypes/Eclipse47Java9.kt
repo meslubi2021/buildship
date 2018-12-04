@@ -25,7 +25,7 @@ object Eclipse47Java9 : BuildType({
                 hour = 4
                 timezone = "Europe/Budapest"
             }
-            branchFilter = "+:release-3.0"
+            branchFilter = "+:*"
             triggerBuild = always()
             param("revisionRule", "lastFinished")
             param("dayOfWeek", "Sunday")
