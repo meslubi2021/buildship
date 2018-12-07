@@ -21,6 +21,7 @@ object FullTestCoverage : BuildType({
             successfulOnly = true
             branchFilter = """
                 +:*
+                -:teamcity-versioned-settings
             """.trimIndent()
         }
     }

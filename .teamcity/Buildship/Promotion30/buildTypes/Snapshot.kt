@@ -110,7 +110,10 @@ object Snapshot : BuildType({
             schedulingPolicy = daily {
                 hour = 23
             }
-            branchFilter = "+:release-3.0"
+            branchFilter = """
+                +:*
+                -:teamcity-versioned-settings
+            """.trimIndent()
             triggerRules = """
                 -:docs/**
                 -:README.MD

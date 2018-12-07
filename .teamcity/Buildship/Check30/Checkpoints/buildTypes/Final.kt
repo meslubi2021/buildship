@@ -20,6 +20,7 @@ object Final : BuildType({
             buildTypeExtId = "${FullTestCoverage.id}"
             branchFilter = """
                 +:*
+                -:teamcity-versioned-settings
             """.trimIndent()
         }
     }
