@@ -1,4 +1,4 @@
-package Buildship.Check30.BasicTestCoverage.Linux.buildTypes
+package Buildship.Check30.FullTestCoverage.Linux.buildTypes
 
 import Buildship.Check30.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.EclipseBuildTemplate

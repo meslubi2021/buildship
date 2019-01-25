@@ -8,10 +8,11 @@ object Project : Project({
     name = "Full Test Coverage - Linux"
 
     buildType(Eclipse44)
-    buildType(Eclipse48)
     buildType(Eclipse45)
     buildType(Eclipse46)
     buildType(Eclipse47)
     buildType(Eclipse47Java9)
+    buildType(Eclipse48)
+    buildType(Eclipse49)
     buildType(Eclipse410)
 })
