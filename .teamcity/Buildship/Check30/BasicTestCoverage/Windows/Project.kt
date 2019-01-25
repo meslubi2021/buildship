@@ -3,7 +3,7 @@ package Buildship.Check30.BasicTestCoverage.Windows
 import Buildship.Check30.BasicTestCoverage.Windows.buildTypes.Eclipse43
 import Buildship.Check30.BasicTestCoverage.Windows.buildTypes.Eclipse46
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.Project
 
 object Project : Project({
     id("Basic_Test_Coverage_Windows_30")

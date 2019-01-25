@@ -1,8 +1,8 @@
 package Buildship.Check30.Experimental.buildTypes
 
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.gradle
 
 object Eclipse47KotlinSupport : BuildType({
     id("Experimental_Linux_Eclipse47_Java8_Kotlin_30")

@@ -2,7 +2,7 @@ package Buildship.Check30.FullTestCoverage.Windows
 
 import Buildship.Check30.FullTestCoverage.Windows.buildTypes.Eclipse44
 import Buildship.Check30.FullTestCoverage.Windows.buildTypes.Eclipse47
-import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.Project
 
 object Project : Project({
     id("Full_Test_Coverage_Windows_30")

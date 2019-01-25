@@ -2,9 +2,9 @@ package Buildship.Promotion30
 
 import Buildship.Check30.Checkpoints.buildTypes.Final
 import Buildship.GitHubVcsRoot
-import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
-import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
-import jetbrains.buildServer.configs.kotlin.v2018_1.Template
+import jetbrains.buildServer.configs.kotlin.v2018_2.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_2.FailureAction
+import jetbrains.buildServer.configs.kotlin.v2018_2.Template
 
 object Promotion30Template : Template({
     name = "Promotion30 Template"

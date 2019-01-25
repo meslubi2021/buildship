@@ -1,7 +1,7 @@
 package Buildship.Check30.Experimental
 
 import Buildship.Check30.Experimental.buildTypes.Eclipse47KotlinSupport
-import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.Project
 
 object Project : Project({
     id("Experimental_30")

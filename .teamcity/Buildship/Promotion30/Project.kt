@@ -3,7 +3,7 @@ package Buildship.Promotion30
 import Buildship.Promotion30.buildTypes.Milestone
 import Buildship.Promotion30.buildTypes.Release
 import Buildship.Promotion30.buildTypes.Snapshot
-import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.Project
 
 object Project : Project({
     id("Promotion")

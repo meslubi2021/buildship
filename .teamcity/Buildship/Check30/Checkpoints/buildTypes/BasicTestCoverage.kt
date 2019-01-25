@@ -1,10 +1,10 @@
 package Buildship.Check30.Checkpoints.buildTypes
 
 import Buildship.GitHubVcsRoot
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.VcsTrigger
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.vcs
 
 object BasicTestCoverage : BuildType({
     id("Checkpoint_Basic_Test_Coverage_30")

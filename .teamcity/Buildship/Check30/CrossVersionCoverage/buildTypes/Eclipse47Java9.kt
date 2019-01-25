@@ -1,8 +1,8 @@
 package Buildship.Check30.CrossVersionCoverage.buildTypes
 
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.schedule
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.schedule
 
 object Eclipse47Java9 : BuildType({
     id("Cross_Version_Coverage_Linux_Eclipse47_java9_30")

@@ -2,8 +2,8 @@ package Buildship.Check30.FullTestCoverage.Windows.buildTypes
 
 import Buildship.Check30.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.FailureAction
 
 object Eclipse47 : BuildType({
     id("Full_Test_Coverage_Windows_Eclipse427_Java8_30")

@@ -1,9 +1,9 @@
 package Buildship.Check30.Checkpoints.buildTypes
 
 import Buildship.GitHubVcsRoot
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.CheckoutMode
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.finishBuildTrigger
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.CheckoutMode
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.finishBuildTrigger
 
 object FullTestCoverage : BuildType({
     id("Checkpoint_Full_Test_Coverage_30")

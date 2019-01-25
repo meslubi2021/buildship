@@ -2,8 +2,8 @@ package Buildship.Check30.FullTestCoverage.Linux.buildTypes
 
 import Buildship.Check30.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.FailureAction
 
 object Eclipse47Java9 : BuildType({
     id("Full_Test_Coverage_Linux_Eclipse47_Java9_30")

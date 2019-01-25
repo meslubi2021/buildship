@@ -3,7 +3,7 @@ package Buildship.Check30.Checkpoints
 import Buildship.Check30.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.Check30.Checkpoints.buildTypes.Final
 import Buildship.Check30.Checkpoints.buildTypes.FullTestCoverage
-import jetbrains.buildServer.configs.kotlin.v2018_1.Project
+import jetbrains.buildServer.configs.kotlin.v2018_2.Project
 
 object Project : Project({
     id("Checkpoints_30")

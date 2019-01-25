@@ -1,9 +1,9 @@
 package Buildship.Promotion30.buildTypes
 
 import Buildship.Promotion30.Promotion30Template
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
-import jetbrains.buildServer.configs.kotlin.v2018_1.ParameterDisplay
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.ParameterDisplay
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.gradle
 
 object Milestone : BuildType({
     id("Promote30_Milestone")

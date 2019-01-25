@@ -1,7 +1,7 @@
 package Buildship.Check30.BasicTestCoverage.Windows.buildTypes
 
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
 
 object Eclipse43 : BuildType({
     id("Basic_Test_Coverage_Windows_Eclipse43_java8_30")

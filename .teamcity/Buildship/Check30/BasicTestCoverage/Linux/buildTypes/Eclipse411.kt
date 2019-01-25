@@ -1,7 +1,7 @@
 package Buildship.Check30.BasicTestCoverage.Linux.buildTypes
 
 import Buildship.EclipseBuildTemplate
-import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_2.BuildType
 
 object Eclipse411 : BuildType({
     id("Basic_Test_Coverage_Linux_Eclipse411_Java8_30")

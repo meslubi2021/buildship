@@ -1,7 +1,7 @@
 package Buildship.Check30.Checkpoints.buildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
-import jetbrains.buildServer.configs.kotlin.v2018_1.SnapshotDependency
+import jetbrains.buildServer.configs.kotlin.v2018_2.FailureAction
+import jetbrains.buildServer.configs.kotlin.v2018_2.SnapshotDependency
 
 object CheckpointUtils {
     val DefaultFailureCondition:  SnapshotDependency.() -> Unit = {

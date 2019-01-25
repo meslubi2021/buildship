@@ -1,6 +1,6 @@
 package Buildship
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.vcs.GitVcsRoot
+import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 
 object GitHubVcsRoot : GitVcsRoot({
     name = "Buildship"
