@@ -18,6 +18,13 @@ object Eclipse49 : BuildType({
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
     }
 
+    dependencies {
+        snapshot(BasicTestCoverage) {
+            onDependencyFailure = FailureAction.CANCEL
+            onDependencyCancel = FailureAction.CANCEL
+        }
+    }
+
     requirements {
         contains("teamcity.agent.jvm.os.name", "Linux", "RQ_650")
     }

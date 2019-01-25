@@ -1,7 +1,9 @@
 package Buildship.Check30.FullTestCoverage.Linux.buildTypes
 
+import Buildship.Check30.Checkpoints.buildTypes.BasicTestCoverage
 import Buildship.EclipseBuildTemplate
 import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.FailureAction
 
 object Eclipse47 : BuildType({
     id("Basic_Test_Coverage_Linux_Eclipse47_java8_30")
@@ -13,8 +15,14 @@ object Eclipse47 : BuildType({
         param("eclipse.version", "47")
         param("compiler.location", "%linux.java8.oracle.64bit%/bin/javac")
         param("eclipse.test.java.home", "%linux.java8.oracle.64bit%")
-        param("gradle.tasks", "clean eclipseTest")
         param("env.JAVA_HOME", "%linux.java8.oracle.64bit%")
+    }
+
+    dependencies {
+        snapshot(BasicTestCoverage) {
+            onDependencyFailure = FailureAction.CANCEL
+            onDependencyCancel = FailureAction.CANCEL
+        }
     }
 
     requirements {
