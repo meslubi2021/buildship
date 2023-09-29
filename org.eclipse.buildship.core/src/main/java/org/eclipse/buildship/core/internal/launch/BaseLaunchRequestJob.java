@@ -23,6 +23,7 @@ import org.eclipse.buildship.core.internal.configuration.BaseRunConfiguration;
 import org.eclipse.buildship.core.internal.console.ProcessDescription;
 import org.eclipse.buildship.core.internal.event.Event;
 import org.eclipse.buildship.core.internal.gradle.GradleProgressAttributes;
+import org.eclipse.buildship.core.internal.marker.GradleMarkerManager;
 import org.eclipse.buildship.core.internal.operation.ToolingApiJob;
 import org.eclipse.buildship.core.internal.workspace.InternalGradleBuild;
 
@@ -58,6 +59,7 @@ public abstract class BaseLaunchRequestJob<T extends LongRunningOperation> exten
                 .build();
         T launcher = createLaunch(gradleBuild, attributes, processDescription);
 
+        GradleMarkerManager.clear(gradleBuild);
         writeExtraConfigInfo(attributes);
 
         Event event = new DefaultExecuteLaunchRequestEvent(processDescription, launcher);
