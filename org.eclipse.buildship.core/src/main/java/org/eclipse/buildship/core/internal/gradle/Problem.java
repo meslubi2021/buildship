@@ -10,6 +10,7 @@
 package org.eclipse.buildship.core.internal.gradle;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -20,7 +21,7 @@ public class Problem {
     private final String label;
     private final ProblemSeverity severity;
     private final Set<ProblemLocation> locations;
-    private final String documentationLink;
+    private final Optional<String> documentationLink;
     private final List<String> solutions;
     private final ProblemCategory category;
 
@@ -37,7 +38,7 @@ public class Problem {
                 this.label = label;
                 this.severity = severity;
                 this.locations = locations;
-                this.documentationLink = documentationLink;
+                this.documentationLink = Optional.ofNullable(documentationLink);
                 this.solutions = solutions;
                 this.category = category;
     }
@@ -54,7 +55,7 @@ public class Problem {
         return this.locations;
     }
 
-    public String getDocumentationLink() {
+    public Optional<String> getDocumentationLink() {
         return this.documentationLink;
     }
 

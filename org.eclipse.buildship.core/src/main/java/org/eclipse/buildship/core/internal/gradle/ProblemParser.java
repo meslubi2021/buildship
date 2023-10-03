@@ -1,6 +1,16 @@
+/*******************************************************************************
+ * Copyright (c) 2023 Gradle Inc. and others
+ *
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package org.eclipse.buildship.core.internal.gradle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,23 +62,37 @@ public class ProblemParser {
 
         @Override
         public Set<ProblemLocation> parse(JsonObject problemJson) {
-            JsonArray locations = problemJson.get("where").getAsJsonArray();
-            Set<ProblemLocation> result = new LinkedHashSet<>(locations.size());
-            for (JsonElement l : locations) {
-                JsonObject location = l.getAsJsonObject();
-                if (location.has("path")) {
-                    String path = location.get("path").getAsString();
-                    Integer line = location.has("line") ? location.get("line").getAsInt() : null;
-                    Integer column = location.has("column") ? location.get("column").getAsInt() : null;
-                    Integer length = location.has("length") ? location.get("length").getAsInt() : null;
-                    result.add(new FileLocation(path, line, column, length));
-                } else if (location.has("identityPath")) {
-                    JsonObject pathObject = location.get("identityPath").getAsJsonObject();
-                    String fullPath = pathObject.get("fullPath").getAsString();
-                    result.add(new TaskLocation(fullPath));
+            JsonElement where = problemJson.get("where");
+            if (where != null) {
+                Set<ProblemLocation> result = new LinkedHashSet<>();
+                if (where.isJsonObject()) {
+                    maybeAddLocation(where.getAsJsonObject(), result);
+                } else if (where.isJsonArray()) {
+                    JsonArray locations = where.getAsJsonArray();
+                    for (JsonElement l : locations) {
+                        if (l.isJsonObject()) {
+                            maybeAddLocation(l.getAsJsonObject(), result);
+                        }
+                    }
                 }
+                return result;
+            } else {
+                return Collections.emptySet();
             }
-            return result;
+        }
+
+        private static void maybeAddLocation(JsonObject location, Set<ProblemLocation> result) {
+            if (location.has("path")) {
+                String path = location.get("path").getAsString();
+                Integer line = location.has("line") ? location.get("line").getAsInt() : null;
+                Integer column = location.has("column") ? location.get("column").getAsInt() : null;
+                Integer length = location.has("length") ? location.get("length").getAsInt() : null;
+                result.add(new FileLocation(path, line, column, length));
+            } else if (location.has("identityPath")) {
+                JsonObject pathObject = location.get("identityPath").getAsJsonObject();
+                String fullPath = pathObject.get("fullPath").getAsString();
+                result.add(new TaskLocation(fullPath));
+            }
         }
     }
 
@@ -76,12 +100,21 @@ public class ProblemParser {
 
         @Override
         public String parse(JsonObject problemJson) {
+            // TODO this is incorrect as we don't have information about the current Gradle version.
+            // The url creation should happen within either the Gradle daemon or the TAPI internals.
             if (problemJson.has("documentationLink")) {
                 JsonObject docLinkObject = problemJson.get("documentationLink").getAsJsonObject();
-                String page = docLinkObject.get("page").getAsString();
-                String section = docLinkObject.get("section").getAsString();
-                // TODO this is incorrect as we don't have information about the current Gradle version. The url creation should happen within either the Gradle daemon or the TAPI internals.
-                return String.format("%s/userguide/%s.html#%s", "https://docs.gradle.org/current", page, section);
+                if (docLinkObject.has("page")) {
+                    String page = docLinkObject.get("page").getAsString();
+                    if (docLinkObject.has("section")) {
+                        String section = docLinkObject.get("section").getAsString();
+                        return String.format("%s/userguide/%s.html#%s", "https://docs.gradle.org/current", page, section);
+                    } else {
+                        return String.format("%s/userguide/%s.html", "https://docs.gradle.org/current", page);
+                    }
+                } else {
+                    return null;
+                }
             }
             else {
                 return null;
@@ -107,7 +140,12 @@ public class ProblemParser {
         @Override
         public ProblemCategory parse(JsonObject problemJson) {
             // TODO This will change once https://github.com/gradle/gradle/pull/26510 is merged
-            return new ProblemCategory(problemJson.get("problemType").getAsString());
+            if (problemJson.has("problemType")) {
+                return new ProblemCategory(problemJson.get("problemType").getAsString());
+            } else {
+                return new ProblemCategory(problemJson.get("problemCategory").getAsString());
+            }
+
         }
     }
 }

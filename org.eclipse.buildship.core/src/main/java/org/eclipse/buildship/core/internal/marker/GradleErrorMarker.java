@@ -9,6 +9,11 @@
  ******************************************************************************/
 package org.eclipse.buildship.core.internal.marker;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
 import com.google.common.base.Throwables;
 
 import org.eclipse.core.resources.IMarker;
@@ -16,10 +21,11 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
 import org.eclipse.buildship.core.internal.CorePlugin;
+import org.eclipse.buildship.core.internal.gradle.ProblemCategory;
 import org.eclipse.buildship.core.internal.workspace.InternalGradleBuild;
 
 /**
- * Describes Gradle error marker.
+ * Describes a Gradle problem marker.
  *
  * @author Donat Csikos
  */
@@ -28,6 +34,10 @@ public class GradleErrorMarker {
     public static String ID = CorePlugin.PLUGIN_ID + ".errormarker";
     public static String ATTRIBUTE_STACKTRACE = "stacktrace";
     public static String ATTRIBUTE_ROOT_DIR = "rootdir";
+    public static String ATTRIBUTE_PROBLEM_CATEGORY = "problem.category";
+    public static String ATTRIBUTE_PROBLEM_SOLUTIONS = "problem.solutions";
+    public static String ATTRIBUTE_DOCUMENTATION_LINK = "problem.documentationlink";
+
 
     private GradleErrorMarker() {
     }
@@ -45,7 +55,12 @@ public class GradleErrorMarker {
         createMarker(IMarker.SEVERITY_WARNING, resource, gradleBuild, message, exception,lineNumber);
     }
 
-    public static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber) {
+    private static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber) {
+        createMarker(severity, resource, gradleBuild, message, exception, lineNumber, null, null, null);
+    }
+
+    public static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber, ProblemCategory category,
+            List<String> solutions, Optional<String> documentationLink) {
         try {
             IMarker marker = resource.createMarker(GradleErrorMarker.ID);
 
@@ -60,6 +75,16 @@ public class GradleErrorMarker {
             if (exception != null) {
                 String stackTrace = Throwables.getStackTraceAsString(exception);
                 marker.setAttribute(GradleErrorMarker.ATTRIBUTE_STACKTRACE, stackTrace);
+            }
+            if (category != null) {
+                marker.setAttribute(ATTRIBUTE_PROBLEM_CATEGORY, category.getCategory());
+            }
+            if (solutions != null) {
+                String solutionsString = solutions.stream().collect(Collectors.joining(System.getProperty("line.separator")));
+                marker.setAttribute(ATTRIBUTE_PROBLEM_SOLUTIONS, solutionsString);
+            }
+            if (documentationLink.isPresent()) {
+                marker.setAttribute(ATTRIBUTE_DOCUMENTATION_LINK, documentationLink.get());
             }
         } catch (CoreException e) {
             CorePlugin.logger().warn("Cannot create Gradle error marker", e);

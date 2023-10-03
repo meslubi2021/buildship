@@ -23,21 +23,17 @@ public class FileLocation implements ProblemLocation {
         this.length = length;
     }
 
-
     public String getPath() {
         return this.path;
     }
-
 
     public Integer getLine() {
         return this.line;
     }
 
-
     public Integer getColumn() {
         return this.column;
     }
-
 
     public Integer getLength() {
         return this.length;
