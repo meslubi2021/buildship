@@ -18,6 +18,6 @@ object GitHubForkVcsRoot : GitVcsRoot({
     agentCleanFilesPolicy = AgentCleanFilesPolicy.NON_IGNORED_ONLY
     checkoutPolicy = AgentCheckoutPolicy.AUTO
     authMethod = anonymous()
-    branch = "refs/heads/master"
+    branch = "refs/heads/teamcity-config"
     branchSpec = "+:*"
 })
