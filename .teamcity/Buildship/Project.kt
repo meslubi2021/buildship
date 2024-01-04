@@ -369,9 +369,10 @@ class CheckpointBuildType(triggerName: String, scenarios: List<IndividualScenari
 
 
 object Project : Project({
-    description = "Eclipse plugins for Gradle http://eclipse.org/buildship"
+    description = "Buildship: Eclipse plugins for Gradle http://eclipse.org/buildship"
     vcsRoot(GitHubForkVcsRoot)
     vcsRoot(GitHubVcsRoot)
+    vcsRoot(GitHubBuildshipForkSettingsVcsRoot)
     subprojectsWithOrder(listOf(IndividualBuilds, Checkpoints, Promotions))
 
     params {
