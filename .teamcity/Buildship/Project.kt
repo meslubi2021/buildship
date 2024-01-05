@@ -143,12 +143,15 @@ val tb4_2_f = CheckpointBuildType("Cross-Version Test Coverage (Fork, Phase 2/4)
 val tb4_3_f = CheckpointBuildType("Cross-Version Test Coverage (Fork, Phase 3/4)", individualBuildsForPhase3Forked, tb4_2_f, Trigger.NONE, GitHubForkVcsRoot)
 val tb4_4_f = CheckpointBuildType("Cross-Version Test Coverage (Fork, Phase 4/4)", individualBuildsForPhase4Forked, tb4_3_f, Trigger.NONE, GitHubForkVcsRoot)
 
-val unsafeSnapshotPromotion = PromotionBuildType("snapshot (from sanity check)","snapshot",  tb1_1)
-val snapshotPromotion = PromotionBuildType("snapshot", "snapshot", tb4_4, Trigger.DAILY_MASTER)
-val milestonePromotion = PromotionBuildType("milestone","milestone", tb4_4)
-val releasePromotion = PromotionBuildType("release","release", tb4_4)
-val individualSnapshotPromotions = EclipseVersion.values().map { SinglePromotionBuildType("Snapshot Eclipse ${it.codeName}", "snapshot", it, tb1_1) } // TODO should depend on tb4_4
-val individualReleasePromotions = EclipseVersion.values().map { SinglePromotionBuildType("Release Eclipse ${it.codeName}", "release", it, tb1_1) } // TODO should depend on tb4_4
+val individualSnapshotPromotions = EclipseVersion.values().map { SinglePromotionBuildType("Snapshot Eclipse ${it.codeName}", "snapshot", it, tb4_4) } // TODO should depend on tb4_4
+val individualReleasePromotions = EclipseVersion.values().map { SinglePromotionBuildType("Release Eclipse ${it.codeName}", "release", it, tb4_4) } // TODO should depend on tb4_4
+val individualMilestonePromotions = EclipseVersion.values().map { SinglePromotionBuildType("Milestone Eclipse ${it.codeName}", "milestone", it, tb4_4) } // TODO should depend on tb4_4
+val individualSnapshotSanityPromotions = EclipseVersion.values().map { SinglePromotionBuildType("Snapshot from Sanity check Eclipse ${it.codeName}", "snapshot", it, tb1_1) } // TODO should depend on tb4_4
+
+val unsafeSnapshotPromotion = PromotionBuildType("snapshot (from sanity check)","snapshot",  tb1_1, Trigger.NONE, individualSnapshotSanityPromotions)
+val snapshotPromotion = PromotionBuildType("snapshot", "snapshot", tb4_4, Trigger.DAILY_MASTER, individualSnapshotPromotions)
+val milestonePromotion = PromotionBuildType("milestone","milestone", tb4_4, Trigger.NONE, individualMilestonePromotions)
+val releasePromotion = PromotionBuildType("release","release", tb4_4, Trigger.NONE, individualReleasePromotions)
 
 
 class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: EclipseVersion, eclipseRuntimeJdk: Jdk, vcsRoot: GitVcsRoot = GitHubVcsRoot) : BuildType({
@@ -232,7 +235,7 @@ class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: Ec
     }
 })
 
-class PromotionBuildType(promotionName: String, typeName: String, dependency: BuildType, trigger: Trigger = Trigger.NONE) : BuildType({
+class PromotionBuildType(promotionName: String, typeName: String, dependency: BuildType, trigger: Trigger = Trigger.NONE, upstreamBuilds: List<SinglePromotionBuildType> = listOf()) : BuildType({
     createId("Promotion", promotionName.capitalize())
     artifactRules = "org.eclipse.buildship.site/build/repository/** => .teamcity/update-site"
     trigger.applyOn(this)
@@ -280,28 +283,29 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
 
     dependencies {
         snapshot(dependency, DefaultFailureCondition)
+        upstreamBuilds.forEach { snapshot(it, DefaultFailureCondition) }
     }
 
     steps {
-        for (eclipseVersion in EclipseVersion.values().reversed()) {
-            gradle {
-                name = "Build and upload update site for Eclipse ${eclipseVersion.codeName} (${eclipseVersion.versionNumber})"
-                tasks = "clean build uploadUpdateSite"
-                buildFile = ""
-                gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} " +
-                        "-Prepository.mirrors=\"%repository.mirrors%\" " +
-                        "--exclude-task eclipseTest " +
-                        "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
-                        "-Pbuild.invoker=%build.invoker% " +
-                        "-Prelease.type=%eclipse.release.type% " +
-                        eclipseFtpBuildParameters +
-                        "--stacktrace " +
-                        "-Declipse.p2.mirror=false " +
-                        gradleCacheConnectionParameters +
-                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
-                param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-            }
-        }
+//        for (eclipseVersion in EclipseVersion.values().reversed()) {
+//            gradle {
+//                name = "Build and upload update site for Eclipse ${eclipseVersion.codeName} (${eclipseVersion.versionNumber})"
+//                tasks = "clean build uploadUpdateSite"
+//                buildFile = ""
+//                gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} " +
+//                        "-Prepository.mirrors=\"%repository.mirrors%\" " +
+//                        "--exclude-task eclipseTest " +
+//                        "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
+//                        "-Pbuild.invoker=%build.invoker% " +
+//                        "-Prelease.type=%eclipse.release.type% " +
+//                        eclipseFtpBuildParameters +
+//                        "--stacktrace " +
+//                        "-Declipse.p2.mirror=false " +
+//                        gradleCacheConnectionParameters +
+//                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
+//                param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
+//            }
+//        }
 
         if (typeName == "release") {
             gradle {
@@ -496,7 +500,9 @@ object Promotions : Project({
         milestonePromotion,
         releasePromotion) +
             individualSnapshotPromotions +
-            individualReleasePromotions)
+            individualReleasePromotions +
+            individualSnapshotSanityPromotions +
+            individualMilestonePromotions)
 })
 
 
