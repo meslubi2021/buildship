@@ -106,6 +106,20 @@ val individualBuildsForPhase4Forked = listOf(
         //IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_18, GitHubForkVcsRoot)
 )
 
+val eclipseFtpBuildParameters =
+        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
+        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
+        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
+        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
+        "-PECLIPSE_ORG_TEMP_PATH=tmp " +
+        "-PECLIPSE_ORG_MIRROR_PATH=/buildship/updates "
+
+val gradleCacheConnectionParameters =
+        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" "
+
+
 
 val tb1_1 = CheckpointBuildType("Sanity Check (Phase 1/1)", individualBuildsForPhase1, null)
 val tb1_2 = CheckpointBuildType("Basic Test Coverage (Phase 1/2)", individualBuildsForPhase1, null)
@@ -192,9 +206,7 @@ class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: Ec
                     "--stacktrace " +
                     "-Declipse.p2.mirror=false " +
                     "-Dscan " +
-                    "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
-                    "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
-                    "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                    gradleCacheConnectionParameters +
                     "${Jdk.javaInstallationPathsProperty(os)}"
             jvmArgs = "-XX:MaxPermSize=256m"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
@@ -282,15 +294,10 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                         "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
                         "-Pbuild.invoker=%build.invoker% " +
                         "-Prelease.type=%eclipse.release.type% " +
-                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
-                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
-                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
-                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
-                        "-PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
-                        "--stacktrace -Declipse.p2.mirror=false " +
-                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
-                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
-                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        eclipseFtpBuildParameters +
+                        "--stacktrace " +
+                        "-Declipse.p2.mirror=false " +
+                        gradleCacheConnectionParameters +
                         "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
                 param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
             }
@@ -306,17 +313,10 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                         "-Peclipse.version=45 " +
                         "-Pbuild.invoker=%build.invoker% " +
                         "-Prelease.type=%eclipse.release.type% " +
-                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
-                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
-                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
-                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
-                        "-PECLIPSE_ORG_TEMP_PATH=tmp " +
-                        "-PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                        eclipseFtpBuildParameters +
                         "-PgithubAccessKey=%github.token% " +
                         "--stacktrace " +
-                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
-                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
-                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        gradleCacheConnectionParameters +
                         "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             }
         }
@@ -383,16 +383,9 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
                     "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
                     "-Pbuild.invoker=%build.invoker% " +
                     "-Prelease.type=%eclipse.release.type% " +
-                    "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
-                    "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
-                    "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
-                    "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
-                    "-PECLIPSE_ORG_TEMP_PATH=tmp " +
-                    "-PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                    eclipseFtpBuildParameters +
                     "--stacktrace -Declipse.p2.mirror=false " +
-                    "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
-                    "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
-                    "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                    gradleCacheConnectionParameters +
                     "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
@@ -403,18 +396,14 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
                 tasks = "tag incrementVersion"
                 buildFile = ""
                 gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" " +
-                        "--exclude-task eclipseTest -Peclipse.version=45 " +
+                        "--exclude-task eclipseTest " +
+                        "-Peclipse.version=45 " +
                         "-Pbuild.invoker=%build.invoker% " +
                         "-Prelease.type=%eclipse.release.type% " +
-                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
-                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
-                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
-                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
-                        "-PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
-                        "-PgithubAccessKey=%github.token% --stacktrace " +
-                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
-                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
-                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        eclipseFtpBuildParameters +
+                        "-PgithubAccessKey=%github.token% " +
+                        "--stacktrace " +
+                        gradleCacheConnectionParameters +
                         "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             }
         }
@@ -501,7 +490,13 @@ object Checkpoints : Project({
 
 object Promotions : Project({
     createId("Promotions")
-    buildTypesWithOrder(listOf(unsafeSnapshotPromotion, snapshotPromotion, milestonePromotion, releasePromotion) + individualSnapshotPromotions + individualReleasePromotions)
+    buildTypesWithOrder(listOf(
+        unsafeSnapshotPromotion,
+        snapshotPromotion,
+        milestonePromotion,
+        releasePromotion) +
+            individualSnapshotPromotions +
+            individualReleasePromotions)
 })
 
 
