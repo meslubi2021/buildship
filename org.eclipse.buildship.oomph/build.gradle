@@ -1,4 +1,0 @@
-apply plugin: eclipsebuild.BundlePlugin
-
-sourceSets.main.java.srcDir 'src/main/java-generated'
-checkstyleMain.source = fileTree('src/main/java')

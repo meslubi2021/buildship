@@ -1,3 +1,0 @@
-org.eclipse.buildship.core/trace/preferences = false
-org.eclipse.buildship.core/trace/projectConfigurators = false
-org.eclipse.buildship.core/trace/classpath = false

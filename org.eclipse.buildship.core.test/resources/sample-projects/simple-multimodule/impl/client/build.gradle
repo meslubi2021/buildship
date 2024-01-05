@@ -1,6 +1,0 @@
-apply plugin: 'java'
-
-dependencies {
-     implementation project(":api")
-     implementation "org.apache.commons:commons-lang3:3.3.2"
-}
