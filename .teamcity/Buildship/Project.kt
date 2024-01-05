@@ -182,7 +182,20 @@ class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: Ec
             id = "RUNNER_21"
             tasks = "%gradle.tasks%"
             buildFile = ""
-            gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} -Prepository.mirrors=\"%repository.mirrors%\" -Peclipse.version=%eclipse.version% -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -Peclipse.test.java.version=%eclipse.test.java.version% --info --stacktrace -Declipse.p2.mirror=false -Dscan \"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" \"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" \"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" ${Jdk.javaInstallationPathsProperty(os)}"
+            gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} " +
+                    "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                    "-Peclipse.version=%eclipse.version% " +
+                    "-Pbuild.invoker=%build.invoker% " +
+                    "-Prelease.type=%eclipse.release.type% " +
+                    "-Peclipse.test.java.version=%eclipse.test.java.version% " +
+                    "--info " +
+                    "--stacktrace " +
+                    "-Declipse.p2.mirror=false " +
+                    "-Dscan " +
+                    "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+                    "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+                    "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                    "${Jdk.javaInstallationPathsProperty(os)}"
             jvmArgs = "-XX:MaxPermSize=256m"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
             jdkHome
@@ -215,8 +228,15 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
 
     params {
         when(typeName) {
-            "milestone" -> text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,regex = "YES", validationMessage = "Confirm by writing YES in order to proceed.")
-            "release" -> password("github.token", "", label = "GitHub token", description = "Please specify your GitHub auth token to proceed with the release", display = ParameterDisplay.PROMPT)
+            "milestone" -> text("Confirm", "NO",
+                label = "Do you want to proceed with the milestone?",
+                description = "Confirm to publish a new milestone.",
+                display = ParameterDisplay.PROMPT,regex = "YES",
+                validationMessage = "Confirm by writing YES in order to proceed.")
+            "release" -> password("github.token", "",
+                label = "GitHub token",
+                description = "Please specify your GitHub auth token to proceed with the release",
+                display = ParameterDisplay.PROMPT)
         }
         param("eclipse.release.type", typeName)
         param("build.invoker", "ci")
@@ -256,7 +276,22 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                 name = "Build and upload update site for Eclipse ${eclipseVersion.codeName} (${eclipseVersion.versionNumber})"
                 tasks = "clean build uploadUpdateSite"
                 buildFile = ""
-                gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} -Prepository.mirrors=\"%repository.mirrors%\" --exclude-task eclipseTest -Peclipse.version=${eclipseVersion.updateSiteVersion} -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates -PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates --stacktrace -Declipse.p2.mirror=false \"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" \"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" \"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" ${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
+                gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} " +
+                        "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                        "--exclude-task eclipseTest " +
+                        "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
+                        "-Pbuild.invoker=%build.invoker% " +
+                        "-Prelease.type=%eclipse.release.type% " +
+                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
+                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
+                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
+                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
+                        "-PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                        "--stacktrace -Declipse.p2.mirror=false " +
+                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
                 param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
             }
         }
@@ -266,7 +301,23 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                 name = "Tag revision and increment version number"
                 tasks = "tag incrementVersion"
                 buildFile = ""
-                gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" --exclude-task eclipseTest -Peclipse.version=45 -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates -PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates -PgithubAccessKey=%github.token% --stacktrace \"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" \"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" \"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" ${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
+                gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                        "--exclude-task eclipseTest " +
+                        "-Peclipse.version=45 " +
+                        "-Pbuild.invoker=%build.invoker% " +
+                        "-Prelease.type=%eclipse.release.type% " +
+                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
+                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
+                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
+                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
+                        "-PECLIPSE_ORG_TEMP_PATH=tmp " +
+                        "-PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                        "-PgithubAccessKey=%github.token% " +
+                        "--stacktrace " +
+                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             }
         }
     }
@@ -280,8 +331,15 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
 
     params {
         when(typeName) {
-            "milestone" -> text("Confirm", "NO", label = "Do you want to proceed with the milestone?", description = "Confirm to publish a new milestone.", display = ParameterDisplay.PROMPT,regex = "YES", validationMessage = "Confirm by writing YES in order to proceed.")
-            "release" -> password("github.token", "", label = "GitHub token", description = "Please specify your GitHub auth token to proceed with the release", display = ParameterDisplay.PROMPT)
+            "milestone" -> text("Confirm", "NO",
+                label = "Do you want to proceed with the milestone?",
+                description = "Confirm to publish a new milestone.",
+                display = ParameterDisplay.PROMPT,regex = "YES",
+                validationMessage = "Confirm by writing YES in order to proceed.")
+            "release" -> password("github.token", "",
+                label = "GitHub token",
+                description = "Please specify your GitHub auth token to proceed with the release",
+                display = ParameterDisplay.PROMPT)
         }
         param("eclipse.release.type", typeName)
         param("build.invoker", "ci")
@@ -319,7 +377,23 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
             name = "Build and upload update site for Eclipse ${eclipseVersion.codeName} (${eclipseVersion.versionNumber})"
             tasks = "clean build uploadUpdateSite"
             buildFile = ""
-            gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} -Prepository.mirrors=\"%repository.mirrors%\" --exclude-task eclipseTest -Peclipse.version=${eclipseVersion.updateSiteVersion} -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates -PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates --stacktrace -Declipse.p2.mirror=false \"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" \"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" \"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" ${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
+            gradleParams = "-Platest=${if(eclipseVersion.isLatest) "true" else "false"} " +
+                    "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                    "--exclude-task eclipseTest " +
+                    "-Peclipse.version=${eclipseVersion.updateSiteVersion} " +
+                    "-Pbuild.invoker=%build.invoker% " +
+                    "-Prelease.type=%eclipse.release.type% " +
+                    "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
+                    "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
+                    "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
+                    "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
+                    "-PECLIPSE_ORG_TEMP_PATH=tmp " +
+                    "-PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                    "--stacktrace -Declipse.p2.mirror=false " +
+                    "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+                    "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+                    "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                    "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
         }
 
@@ -328,7 +402,20 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
                 name = "Tag revision and increment version number"
                 tasks = "tag incrementVersion"
                 buildFile = ""
-                gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" --exclude-task eclipseTest -Peclipse.version=45 -Pbuild.invoker=%build.invoker% -Prelease.type=%eclipse.release.type% -PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org -PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% -PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% -PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates -PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates -PgithubAccessKey=%github.token% --stacktrace \"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" \"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" \"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" ${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
+                gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                        "--exclude-task eclipseTest -Peclipse.version=45 " +
+                        "-Pbuild.invoker=%build.invoker% " +
+                        "-Prelease.type=%eclipse.release.type% " +
+                        "-PECLIPSE_ORG_FTP_HOST=projects-storage.eclipse.org " +
+                        "-PECLIPSE_ORG_FTP_USER=%eclipse.downloadServer.username% " +
+                        "-PECLIPSE_ORG_FTP_PASSWORD=%eclipse.downloadServer.password% " +
+                        "-PECLIPSE_ORG_FTP_UPDATE_SITES_PATH=downloads/buildship/updates " +
+                        "-PECLIPSE_ORG_TEMP_PATH=tmp -PECLIPSE_ORG_MIRROR_PATH=/buildship/updates " +
+                        "-PgithubAccessKey=%github.token% --stacktrace " +
+                        "\"-Dgradle.cache.remote.url=%gradle.cache.remote.url%\" " +
+                        "\"-Dgradle.cache.remote.username=%gradle.cache.remote.username%\" " +
+                        "\"-Dgradle.cache.remote.password=%gradle.cache.remote.password%\" " +
+                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             }
         }
     }
