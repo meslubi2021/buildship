@@ -243,6 +243,7 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
 
     failureConditions {
         errorMessage = true
+        executionTimeoutMin = 360
     }
 
     dependencies {
