@@ -20,8 +20,7 @@ enum class EclipseVersion(val codeName: String, val versionNumber: String) {
     ECLIPSE4_24("2022-06", "4.24"),
     ECLIPSE4_25("2022-09", "4.25"),
     ECLIPSE4_26("2022-12", "4.26"),
-    ECLIPSE4_27("2023-03", "4.27"),
-    ECLIPSE4_28("2023-06", "4.28");
+    ECLIPSE4_27("2023-03", "4.27");
 
     val updateSiteVersion: String
         get() = versionNumber.replace(".", "")
