@@ -14,6 +14,10 @@ enum class Trigger(private val func: (BuildType) -> Unit) {
                 perCheckinTriggering = true
                 groupCheckinsByCommitter = true
                 enableQueueOptimization = false
+                branchFilter = """
+                    +:*
+                    -:teamcity-config
+                 """.trimMargin()
             }
         }
     }),
