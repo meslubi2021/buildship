@@ -59,7 +59,7 @@ public class GradleErrorMarker {
         createMarker(severity, resource, gradleBuild, message, exception, lineNumber, null, null, null);
     }
 
-    public static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber, ProblemCategory category,
+    public static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber, String category,
             List<String> solutions, Optional<String> documentationLink) {
         try {
             IMarker marker = resource.createMarker(GradleErrorMarker.ID);
@@ -77,7 +77,7 @@ public class GradleErrorMarker {
                 marker.setAttribute(GradleErrorMarker.ATTRIBUTE_STACKTRACE, stackTrace);
             }
             if (category != null) {
-                marker.setAttribute(ATTRIBUTE_PROBLEM_CATEGORY, category.getCategory());
+                marker.setAttribute(ATTRIBUTE_PROBLEM_CATEGORY, category);
             }
             if (solutions != null) {
                 String solutionsString = solutions.stream().collect(Collectors.joining(System.getProperty("line.separator")));

@@ -9,18 +9,22 @@
  ******************************************************************************/
 package org.eclipse.buildship.core.internal.util.progress;
 
+import static java.util.stream.Collectors.toList;
+
+import java.util.List;
 import java.util.Optional;
 
 import org.gradle.tooling.events.ProgressEvent;
 import org.gradle.tooling.events.ProgressListener;
+import org.gradle.tooling.events.problems.BaseProblemDescriptor;
+import org.gradle.tooling.events.problems.ProblemAggregationDescriptor;
+import org.gradle.tooling.events.problems.ProblemDescriptor;
 import org.gradle.tooling.events.problems.ProblemEvent;
+import org.gradle.tooling.events.problems.Solution;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 
-import org.eclipse.buildship.core.internal.CorePlugin;
-import org.eclipse.buildship.core.internal.gradle.Problem;
-import org.eclipse.buildship.core.internal.gradle.ProblemParser;
 import org.eclipse.buildship.core.internal.marker.GradleErrorMarker;
 import org.eclipse.buildship.core.internal.util.gradle.Pair;
 import org.eclipse.buildship.core.internal.workspace.InternalGradleBuild;
@@ -37,23 +41,46 @@ public class ProblemsReportingProgressListener implements ProgressListener {
     public void statusChanged(ProgressEvent event) {
         if (event instanceof ProblemEvent) {
             ProblemEvent problemEvent = (ProblemEvent) event;
-            String problemJson = problemEvent.getDescriptor().getJson();
-            try {
-                reportProblemWithEclipseMarker(problemJson);
-            } catch (Exception e) {
-                CorePlugin.logger().warn("Cannot report problem " + problemJson, e);
+            BaseProblemDescriptor descriptor = problemEvent.getDescriptor();
+            if (descriptor instanceof ProblemDescriptor) {
+                ProblemDescriptor pd = (ProblemDescriptor) descriptor;
+                reportProblemWithEclipseMarker(pd);
+            }
+            if (descriptor instanceof ProblemAggregationDescriptor) {
+                ProblemAggregationDescriptor pad = (ProblemAggregationDescriptor) descriptor;
+                pad.getAggregations().forEach(aggregation -> aggregation.getProblemDescriptors().forEach(pd -> reportProblemWithEclipseMarker(pd)));
             }
         }
     }
 
-    private void reportProblemWithEclipseMarker(String problemJson) {
-        Problem gradleProblem = ProblemParser.parse(problemJson);
-        ProblemAdapter eclipseProblem = ProblemAdapter.from(gradleProblem);
+    private void reportProblemWithEclipseMarker(ProblemDescriptor pd) {
+        ProblemAdapter eclipseProblem = ProblemAdapter.from(pd);
         Optional<Pair<IResource,Integer>> location = eclipseProblem.resourceAndFileNumberOfFirstFileLocation();
+        List<String> solutions = pd.getSolutions().stream().map(Solution::toString).collect(toList());
+        Optional<String> documentationLink = Optional.of(pd.getDocumentationLink().getUrl());
+        String label = eclipseProblem.getProblem().getLabel().getLabel();
         if (location.isPresent()) {
-            GradleErrorMarker.createMarker(eclipseProblem.toMarkerSeverity(), location.get().getFirst(), this.gradleBuild, eclipseProblem.getProblem().getLabel(), null, location.get().getSecond(), gradleProblem.getCategory(), gradleProblem.getSolutions(), gradleProblem.getDocumentationLink());
+            GradleErrorMarker.createMarker(
+                    eclipseProblem.toMarkerSeverity(),
+                    location.get().getFirst(),
+                    this.gradleBuild,
+                    label,
+                    null,
+                    location.get().getSecond(),
+                    pd.getCategory().getCategory(),
+                    solutions,
+                    documentationLink);
         } else {
-            GradleErrorMarker.createMarker(eclipseProblem.toMarkerSeverity(),  ResourcesPlugin.getWorkspace().getRoot(), this.gradleBuild, eclipseProblem.getProblem().getLabel(), null, -1, gradleProblem.getCategory(), gradleProblem.getSolutions(), gradleProblem.getDocumentationLink());
+            GradleErrorMarker.createMarker(
+                    eclipseProblem.toMarkerSeverity(),
+                    ResourcesPlugin.getWorkspace().getRoot(),
+                    this.gradleBuild,
+                    label,
+                    null,
+                    -1,
+                    pd.getCategory().getCategory(),
+                    solutions,
+                    documentationLink);
         }
     }
 }

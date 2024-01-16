@@ -10,6 +10,10 @@
 package org.eclipse.buildship.core.internal.util.progress;
 
 import java.util.Optional;
+
+import org.gradle.tooling.events.problems.ProblemDescriptor;
+import org.gradle.tooling.events.problems.Severity;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -19,38 +23,36 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
 import org.eclipse.buildship.core.internal.gradle.FileLocation;
-import org.eclipse.buildship.core.internal.gradle.Problem;
-import org.eclipse.buildship.core.internal.gradle.ProblemSeverity;
 import org.eclipse.buildship.core.internal.util.gradle.Pair;
 
 public class ProblemAdapter {
 
-    private Problem problem;
+    private ProblemDescriptor problem;
 
-    private ProblemAdapter(Problem problem) {
-        this.problem = problem;
+    private ProblemAdapter(ProblemDescriptor pd) {
+        this.problem = pd;
     }
 
-    public static ProblemAdapter from(Problem problem) {
-        return new ProblemAdapter(problem);
+    public static ProblemAdapter from(ProblemDescriptor pd) {
+        return new ProblemAdapter(pd);
     }
 
-    public Problem getProblem() {
+    public ProblemDescriptor getProblem() {
         return this.problem;
     }
 
     public int toMarkerSeverity() {
-        ProblemSeverity severity = this.problem.getSeverity();
-        switch (severity) {
-            case WARNING:
-                return IMarker.SEVERITY_WARNING;
-            case ADVICE:
-                return IMarker.SEVERITY_INFO;
-            case ERROR:
-                return IMarker.SEVERITY_ERROR;
-            default:
-                return IMarker.SEVERITY_INFO;
+        Severity severity = this.problem.getSeverity();
+        if(severity == Severity.WARNING) {
+            return IMarker.SEVERITY_WARNING;
         }
+        if(severity == Severity.ADVICE) {
+            return IMarker.SEVERITY_INFO;
+        }
+        if(severity == Severity.ERROR) {
+            return IMarker.SEVERITY_ERROR;
+        }
+        return IMarker.SEVERITY_INFO;
     }
 
     public Optional<FileLocation> firstFileLocation() {

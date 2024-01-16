@@ -22,6 +22,7 @@ import org.gradle.tooling.CancellationToken;
 import org.gradle.tooling.GradleConnectionException;
 import org.gradle.tooling.ProgressListener;
 import org.gradle.tooling.ResultHandler;
+import org.gradle.tooling.StreamedValueListener;
 import org.gradle.tooling.events.OperationType;
 
 import com.google.common.cache.Cache;
@@ -221,5 +222,9 @@ public class CachingBuildActionExecuter<T> implements BuildActionExecuter<T> {
         this.cacheKeyBuilder.withSystemPrperties(systemProperties);
         this.delegate.withSystemProperties(systemProperties);
         return this;
+    }
+
+    @Override
+    public void setStreamedValueListener(StreamedValueListener listener) {
     }
 }
