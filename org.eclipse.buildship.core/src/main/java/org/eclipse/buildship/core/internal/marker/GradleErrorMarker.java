@@ -11,7 +11,6 @@ package org.eclipse.buildship.core.internal.marker;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Throwables;
@@ -21,7 +20,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 
 import org.eclipse.buildship.core.internal.CorePlugin;
-import org.eclipse.buildship.core.internal.gradle.ProblemCategory;
 import org.eclipse.buildship.core.internal.workspace.InternalGradleBuild;
 
 /**

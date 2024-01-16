@@ -115,8 +115,7 @@ public class ProblemParser {
                 } else {
                     return null;
                 }
-            }
-            else {
+            } else {
                 return null;
             }
         }
