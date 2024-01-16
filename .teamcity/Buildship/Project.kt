@@ -145,6 +145,9 @@ val tb4_4_f = CheckpointBuildType("Cross-Version Test Coverage (Fork, Phase 4/4)
 
 val eclipseVersions = EclipseVersion.values().reversed()
 val individualSnapshotPromotions = eclipseVersions.map { SinglePromotionBuildType("Snapshot Eclipse ${it.codeName}", "snapshot", it, tb4_4) }
+
+val tagAndIncrementVersion = TagBuildType()
+
 val individualReleasePromotions = eclipseVersions.map { SinglePromotionBuildType("Release Eclipse ${it.codeName}", "release", it, tb4_4) }
 val individualMilestonePromotions = eclipseVersions.map { SinglePromotionBuildType("Milestone Eclipse ${it.codeName}", "milestone", it, tb4_4) }
 val individualSnapshotSanityPromotions = eclipseVersions.map { SinglePromotionBuildType("Snapshot from Sanity check Eclipse ${it.codeName}", "snapshot", it, tb1_1) }
@@ -153,12 +156,12 @@ val d1 = individualSnapshotSanityPromotions.reduce { previous, build -> if(previ
 val d2 = individualSnapshotPromotions.reduce { previous, build -> if(previous != null) build.dependencies{ snapshot(previous, DefaultFailureCondition) } ; build}
 val d3 = individualReleasePromotions.reduce { previous, build -> if(previous != null) build.dependencies{ snapshot(previous, DefaultFailureCondition) } ; build}
 val d4 = individualMilestonePromotions.reduce { previous, build -> if(previous != null) build.dependencies{ snapshot(previous, DefaultFailureCondition) } ; build}
+val d5 = individualReleasePromotions.forEach { tagAndIncrementVersion.dependencies { snapshot(it, DefaultFailureCondition) } }
 
 val unsafeSnapshotPromotion = PromotionBuildType("snapshot (from sanity check)","snapshot",  tb1_1, Trigger.NONE, individualSnapshotSanityPromotions)
 val snapshotPromotion = PromotionBuildType("snapshot", "snapshot", tb4_4, Trigger.DAILY_MASTER, individualSnapshotPromotions)
 val milestonePromotion = PromotionBuildType("milestone","milestone", tb4_4, Trigger.NONE, individualMilestonePromotions)
-val releasePromotion = PromotionBuildType("release","release", tb4_4, Trigger.NONE, individualReleasePromotions)
-
+val releasePromotion = PromotionBuildType("release","release", tb4_4, Trigger.NONE, individualReleasePromotions + tagAndIncrementVersion)
 
 class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: EclipseVersion, eclipseRuntimeJdk: Jdk, vcsRoot: GitVcsRoot = GitHubVcsRoot) : BuildType({
     createId("Individual", "${vcsRoot.name}_${type.name.toLowerCase()}_Test_Coverage_${os.name.toLowerCase()}_Eclipse${eclipseVersion.versionNumber}_OnJava${eclipseRuntimeJdk.majorVersion}")
@@ -241,7 +244,7 @@ class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: Ec
     }
 })
 
-class PromotionBuildType(promotionName: String, typeName: String, dependency: BuildType, trigger: Trigger = Trigger.NONE, upstreamBuilds: List<SinglePromotionBuildType> = listOf()) : BuildType({
+class PromotionBuildType(promotionName: String, typeName: String, dependency: BuildType, trigger: Trigger = Trigger.NONE, upstreamBuilds: List<BuildType> = listOf()) : BuildType({
     createId("Promotion", promotionName.capitalize())
     artifactRules = "org.eclipse.buildship.site/build/repository/** => .teamcity/update-site"
     trigger.applyOn(this)
@@ -254,10 +257,6 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                 description = "Confirm to publish a new milestone.",
                 display = ParameterDisplay.PROMPT,regex = "YES",
                 validationMessage = "Confirm by writing YES in order to proceed.")
-            "release" -> password("github.token", "",
-                label = "GitHub token",
-                description = "Please specify your GitHub auth token to proceed with the release",
-                display = ParameterDisplay.PROMPT)
         }
         param("eclipse.release.type", typeName)
         param("build.invoker", "ci")
@@ -309,6 +308,58 @@ class PromotionBuildType(promotionName: String, typeName: String, dependency: Bu
                         gradleCacheConnectionParameters +
                         "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             }
+        }
+    }
+})
+
+class TagBuildType() : BuildType({
+    createId("TagAndIncrementVersion",  "Tag revision and increment version number")
+    addCredentialsLeakFailureCondition()
+
+    params {
+        password("github.token", "",
+            label = "GitHub token",
+            description = "Please specify your GitHub auth token to proceed with the release",
+            display = ParameterDisplay.PROMPT)
+        param("eclipse.release.type", "release")
+        param("build.invoker", "ci")
+        param("env.JAVA_HOME", Jdk.OPEN_JDK_11.getJavaHomePath(OS.LINUX))
+        param("repository.mirrors", allMirrors())
+        param("env.GRADLE_ENTERPRISE_ACCESS_KEY", "%ge.gradle.org.access.key%")
+    }
+
+    requirements {
+        contains("teamcity.agent.jvm.os.name", "Linux")
+        contains("teamcity.agent.name", "dev")
+    }
+
+    vcs {
+        root(GitHubVcsRoot)
+
+        checkoutMode = CheckoutMode.ON_AGENT
+        cleanCheckout = true
+        showDependenciesChanges = true
+    }
+
+    failureConditions {
+        errorMessage = true
+        executionTimeoutMin = 360
+    }
+
+    steps {
+        gradle {
+            name = "Tag revision and increment version number"
+            tasks = "tag incrementVersion"
+            buildFile = ""
+            gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" " +
+                    "--exclude-task eclipseTest " +
+                    "-Pbuild.invoker=%build.invoker% " +
+                    "-Prelease.type=%eclipse.release.type% " +
+                    eclipseFtpBuildParameters +
+                    "-PgithubAccessKey=%github.token% " +
+                    "--stacktrace " +
+                    gradleCacheConnectionParameters +
+                    "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
         }
     }
 })
@@ -378,24 +429,6 @@ class SinglePromotionBuildType(promotionName: String, typeName: String, eclipseV
                     gradleCacheConnectionParameters +
                     "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
             param("org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration", "GLOBAL")
-        }
-
-        if (typeName == "release" && eclipseVersion.isLatest) {
-            gradle {
-                name = "Tag revision and increment version number"
-                tasks = "tag incrementVersion"
-                buildFile = ""
-                gradleParams = "-Prepository.mirrors=\"%repository.mirrors%\" " +
-                        "--exclude-task eclipseTest " +
-                        "-Peclipse.version=45 " +
-                        "-Pbuild.invoker=%build.invoker% " +
-                        "-Prelease.type=%eclipse.release.type% " +
-                        eclipseFtpBuildParameters +
-                        "-PgithubAccessKey=%github.token% " +
-                        "--stacktrace " +
-                        gradleCacheConnectionParameters +
-                        "${Jdk.javaInstallationPathsProperty(OS.LINUX)}"
-            }
         }
     }
 })
@@ -484,7 +517,8 @@ object Promotions : Project({
         unsafeSnapshotPromotion,
         snapshotPromotion,
         milestonePromotion,
-        releasePromotion) +
+        releasePromotion,
+        tagAndIncrementVersion) +
             individualSnapshotPromotions +
             individualReleasePromotions +
             individualSnapshotSanityPromotions +
