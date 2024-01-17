@@ -54,7 +54,7 @@ public class GradleErrorMarker {
     }
 
     private static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber) {
-        createMarker(severity, resource, gradleBuild, message, exception, lineNumber, null, null, null);
+        createMarker(severity, resource, gradleBuild, message, exception, lineNumber, null, null, Optional.empty());
     }
 
     public static void createMarker(int severity, IResource resource, InternalGradleBuild gradleBuild, String message, Throwable exception, int lineNumber, String category,
