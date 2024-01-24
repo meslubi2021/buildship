@@ -9,9 +9,10 @@
  ******************************************************************************/
 package org.eclipse.buildship.core.internal.marker;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.google.common.base.Throwables;
 
@@ -29,6 +30,7 @@ import org.eclipse.buildship.core.internal.workspace.InternalGradleBuild;
  */
 public class GradleErrorMarker {
 
+    private static final int MAX_ATTRIBUTE_LENGTH = 65535;
     public static String ID = CorePlugin.PLUGIN_ID + ".errormarker";
     public static String ATTRIBUTE_STACKTRACE = "stacktrace";
     public static String ATTRIBUTE_ROOT_DIR = "rootdir";
@@ -72,13 +74,13 @@ public class GradleErrorMarker {
             marker.setAttribute(ATTRIBUTE_ROOT_DIR, gradleBuild.getBuildConfig().getRootProjectDirectory().getAbsolutePath());
             if (exception != null) {
                 String stackTrace = Throwables.getStackTraceAsString(exception);
-                marker.setAttribute(GradleErrorMarker.ATTRIBUTE_STACKTRACE, stackTrace);
+                marker.setAttribute(GradleErrorMarker.ATTRIBUTE_STACKTRACE, stackTrace.substring(0, Math.min(stackTrace.length(), MAX_ATTRIBUTE_LENGTH)));
             }
             if (category != null) {
                 marker.setAttribute(ATTRIBUTE_PROBLEM_CATEGORY, category);
             }
             if (solutions != null) {
-                String solutionsString = solutions.stream().collect(Collectors.joining(System.getProperty("line.separator")));
+                String solutionsString = solutions.stream().collect(joining(System.getProperty("line.separator")));
                 marker.setAttribute(ATTRIBUTE_PROBLEM_SOLUTIONS, solutionsString);
             }
             if (documentationLink.isPresent()) {
