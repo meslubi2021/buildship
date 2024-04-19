@@ -11,9 +11,9 @@ val individualBuildsForPhase1 = listOf(
 )
 val individualBuildsForPhase2 = listOf(
     IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8),
-    IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_20, eclipseRuntimeJdk = Jdk.OPEN_JDK_11),
+    IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
     IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8),
-    IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_11)
+    IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17)
 )
 val individualBuildsForPhase3 = listOf(
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8),
@@ -36,6 +36,10 @@ val individualBuildsForPhase3 = listOf(
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_25, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_26, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_27, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
+    IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_28, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
+    IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_29, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
+    IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_30, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
+    IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17),
 
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8),
     IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_11)
@@ -61,9 +65,9 @@ val individualBuildsForPhase1Forked = listOf(
 )
 val individualBuildsForPhase2Forked = listOf(
         IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8, GitHubForkVcsRoot),
-        IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_20, eclipseRuntimeJdk = Jdk.OPEN_JDK_11, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8, GitHubForkVcsRoot),
-        IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_11, GitHubForkVcsRoot)
+        IndividualScenarioBuildType(ScenarioType.BASIC_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot)
 )
 val individualBuildsForPhase3Forked = listOf(
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8, GitHubForkVcsRoot),
@@ -86,6 +90,10 @@ val individualBuildsForPhase3Forked = listOf(
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_25, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_26, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_27, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_28, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_29, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_30, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.LINUX, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
 
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_8, eclipseRuntimeJdk = Jdk.ORACLE_JDK_8, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.FULL_COVERAGE, OS.WINDOWS, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_11, GitHubForkVcsRoot)
@@ -102,6 +110,7 @@ val individualBuildsForPhase4Forked = listOf(
         IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_15, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_16, GitHubForkVcsRoot),
         IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
+        IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_31, eclipseRuntimeJdk = Jdk.OPEN_JDK_17, GitHubForkVcsRoot),
         // TODO JDK 18 is only supported in Eclipse 4.24
         //IndividualScenarioBuildType(ScenarioType.CROSS_VERSION, OS.LINUX, EclipseVersion.ECLIPSE4_23, eclipseRuntimeJdk = Jdk.OPEN_JDK_18, GitHubForkVcsRoot)
 )
