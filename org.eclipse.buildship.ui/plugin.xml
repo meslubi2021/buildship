@@ -259,11 +259,6 @@
              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
              sequence="F5">
        </key>
-       <key
-             commandId="org.eclipse.buildship.ui.shortcut.test.run"
-             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-             sequence="M1+M3+X G">
-       </key>
    </extension>
 
     <!-- integration of Gradle command images -->
