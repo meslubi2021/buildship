@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IProject
 
 import org.eclipse.buildship.core.internal.CorePlugin
 import org.eclipse.buildship.core.internal.configuration.BuildConfiguration
+import org.eclipse.buildship.core.internal.invocation.BuiltInInvocationCustomizer
 import org.eclipse.buildship.core.internal.invocation.InvocationCustomizerCollector
 import org.eclipse.buildship.core.internal.test.fixtures.ProjectSynchronizationSpecification
 
@@ -43,7 +44,7 @@ class InvocationCustomizerTest extends ProjectSynchronizationSpecification {
 
     def "Can contribute extra arguments"() {
         expect:
-        new InvocationCustomizerCollector().extraArguments == EXTRA_ARGUMENTS
+        new InvocationCustomizerCollector().extraArguments == BuiltInInvocationCustomizer.BUILTIN_ARGUMENTS + EXTRA_ARGUMENTS
     }
 
     def "Build configuration use extra arguments"() {
