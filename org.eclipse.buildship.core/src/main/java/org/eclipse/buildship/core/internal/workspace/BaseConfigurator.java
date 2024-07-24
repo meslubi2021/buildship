@@ -65,7 +65,7 @@ public class BaseConfigurator implements ProjectConfigurator {
         try {
             configure(context, project, monitor);
         } catch (CoreException e) {
-            context.error("Failed to configure project " + project.getName(), e);
+            context.error("Failed to configure project " + project.getName() + " with message: " + e.getMessage(), e);
         }
     }
 
