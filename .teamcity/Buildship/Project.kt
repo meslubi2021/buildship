@@ -190,7 +190,7 @@ class IndividualScenarioBuildType(type: ScenarioType, os: OS, eclipseVersion: Ec
         param("env.JAVA_HOME", Jdk.OPEN_JDK_11.getJavaHomePath(os))
         param("gradle.tasks", type.gradleTasks)
         param("repository.mirrors", allMirrors())
-        param("env.GRADLE_ENTERPRISE_ACCESS_KEY", "%ge.gradle.org.access.key%")
+        param("env.DEVELOCITY_ACCESS_KEY", "%develocity-staging.eclipse.org.access.key%")
     }
 
     if (vcsRoot == GitHubForkVcsRoot) {
@@ -334,7 +334,7 @@ class TagBuildType() : BuildType({
         param("build.invoker", "ci")
         param("env.JAVA_HOME", Jdk.OPEN_JDK_11.getJavaHomePath(OS.LINUX))
         param("repository.mirrors", allMirrors())
-        param("env.GRADLE_ENTERPRISE_ACCESS_KEY", "%ge.gradle.org.access.key%")
+        param("env.DEVELOCITY_ACCESS_KEY", "%develocity-staging.eclipse.org.access.key%")
     }
 
     requirements {
