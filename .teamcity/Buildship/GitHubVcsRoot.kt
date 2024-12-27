@@ -6,7 +6,9 @@ object GitHubVcsRoot : GitVcsRoot({
     name = "Buildship"
     url = "https://github.com/eclipse-buildship/buildship.git"
     branch = "master"
-    branchSpec = "+:*"
+    branchSpec = """
+        +:refs/heads/*
+    """.trimIndent()
     agentGitPath = "%env.TEAMCITY_GIT_PATH%"
     agentCleanFilesPolicy = AgentCleanFilesPolicy.NON_IGNORED_ONLY
     checkoutPolicy = AgentCheckoutPolicy.AUTO
@@ -21,7 +23,9 @@ object GitHubForkVcsRoot : GitVcsRoot({
     checkoutPolicy = AgentCheckoutPolicy.AUTO
     authMethod = anonymous()
     branch = "refs/heads/master"
-    branchSpec = "+:*"
+    branchSpec = """
+        +:refs/heads/*
+    """.trimIndent()
 })
 
 object GitHubBuildshipForkSettingsVcsRoot : GitVcsRoot({
