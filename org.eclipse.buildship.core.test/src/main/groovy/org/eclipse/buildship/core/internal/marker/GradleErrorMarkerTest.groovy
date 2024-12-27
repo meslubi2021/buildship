@@ -131,7 +131,7 @@ class GradleErrorMarkerTest extends ProjectSynchronizationSpecification {
     def "Convers problem reports to error markers"() {
         setup:
         WorkspaceConfiguration w = CorePlugin.configurationManager().loadWorkspaceConfiguration()
-        configurationManager.saveWorkspaceConfiguration(new WorkspaceConfiguration(w.gradleDistribution, w.gradleUserHome, w.javaHome, w.offline, w.buildScansEnabled, w.autoSync, w.arguments, w.jvmArguments, w.showConsoleView, w.showExecutionsView, w.experimentalModuleSupportEnabled , true))
+        configurationManager.saveWorkspaceConfiguration(new WorkspaceConfiguration(w.gradleDistribution, w.gradleUserHome, w.javaHome, w.offline, w.buildScansEnabled, w.autoSync, w.arguments, w.jvmArguments, w.showConsoleView, w.showExecutionsView, w.experimentalModuleSupportEnabled , true, ""))
         File projectDir = dir('error-marker-test') {
             file 'build.gradle', '''
                 import org.gradle.api.internal.GradleInternal

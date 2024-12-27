@@ -2,9 +2,9 @@
 <target name="Buildship Eclipse 2024-06 Target Platform" sequenceNumber="1">
     <locations>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-            <unit id="org.eclipse.m2e.feature.feature.group" version=""/>
-            <unit id="org.eclipse.oomph.setup.feature.group" version=""/>
-            <unit id="org.eclipse.sdk.ide" version=""/>
+            <unit id="org.eclipse.m2e.feature.feature.group" version="2.6.1.20240602-2342"/>
+            <unit id="org.eclipse.oomph.setup.feature.group" version="1.32.0.v20240602-1435"/>
+            <unit id="org.eclipse.sdk.ide" version="4.32.0.I20240601-0610"/>
             <repository location="https://download.eclipse.org/releases/2024-06"/>
         </location>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
