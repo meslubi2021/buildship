@@ -4,7 +4,7 @@ import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 object GitHubVcsRoot : GitVcsRoot({
     name = "Buildship"
-    url = "https://github.com/eclipse/buildship.git"
+    url = "https://github.com/eclipse-buildship/buildship.git"
     branch = "master"
     branchSpec = "+:*"
     agentGitPath = "%env.TEAMCITY_GIT_PATH%"
