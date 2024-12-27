@@ -15,19 +15,6 @@ object GitHubVcsRoot : GitVcsRoot({
     authMethod = anonymous()
 })
 
-object GitHubForkVcsRoot : GitVcsRoot({
-    name = "BuildshipFork"
-    url = "https://github.com/gradle/buildship.git"
-    agentGitPath = "%env.TEAMCITY_GIT_PATH%"
-    agentCleanFilesPolicy = AgentCleanFilesPolicy.NON_IGNORED_ONLY
-    checkoutPolicy = AgentCheckoutPolicy.AUTO
-    authMethod = anonymous()
-    branch = "refs/heads/master"
-    branchSpec = """
-        +:refs/heads/*
-    """.trimIndent()
-})
-
 object GitHubBuildshipForkSettingsVcsRoot : GitVcsRoot({
     name = "BuildshipSettings"
     url = "https://github.com/gradle/buildship.git"
