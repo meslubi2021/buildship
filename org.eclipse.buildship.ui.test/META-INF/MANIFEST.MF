@@ -23,7 +23,9 @@ Require-Bundle: org.eclipse.swtbot.eclipse.finder,
  org.apache.log4j,
  org.eclipse.jdt.launching,
  org.hamcrest.core,
- org.eclipse.e4.ui.model.workbench;resolution:=optional
+ org.eclipse.e4.core.contexts;resolution:=optional,
+ org.eclipse.e4.ui.model.workbench;resolution:=optional,
+ org.eclipse.e4.ui.services;resolution:=optional
 Bundle-ClassPath: .,
  lib/ant-1.10.12.jar,
  lib/ant-antlr-1.10.12.jar,

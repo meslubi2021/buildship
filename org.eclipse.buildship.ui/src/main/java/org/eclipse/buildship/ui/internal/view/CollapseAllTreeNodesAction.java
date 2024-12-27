@@ -37,6 +37,8 @@ public final class CollapseAllTreeNodesAction extends Action implements Selectio
     @Override
     public void run() {
         this.treeViewer.collapseAll();
+        System.err.println(this.treeViewer.getInput());
+
     }
 
     @Override
